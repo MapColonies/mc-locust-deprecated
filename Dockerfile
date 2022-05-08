@@ -64,9 +64,9 @@ FROM locustio/locust
 RUN pip3 install pandas
 RUN pip3 install locust
 
-WORKDIR /locust
+WORKDIR /mnt/locust/stable/locust/locustfiles/example/
 
-COPY . /locust
+# COPY . /locust
 
 # WORKDIR /locust
 
