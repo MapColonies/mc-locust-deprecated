@@ -4,7 +4,7 @@ loadtest:
   # loadtest.locust_locustfile -- the name of the locustfile
   locust_locustfile: main.py
   # loadtest.locust_locustfile_path -- the path of the locustfile (without trailing backslash)
-  locust_locustfile_path: "/mnt/locust/stable/locust/locustfiles/example/"
+  locust_locustfile_path: "/mnt/locust"
   # loadtest.locust_locustfile_configmap -- name of a configmap containing your locustfile (default uses the example locustfile)
   locust_locustfile_configmap: "my-loadtest-locustfile"
   # loadtest.locust_lib_configmap -- name of a configmap containing your lib (default uses the example lib)
@@ -74,7 +74,8 @@ master:
   args: []
   command:
     - sh
-    - /config/docker-entrypoint.sh
+#    - /config/docker-entrypoint.sh
+    - /docker-entrypoint.sh
   strategy:
     type: RollingUpdate
   # master.pdb.enabled -- Whether to create a PodDisruptionBudget for the master pod
