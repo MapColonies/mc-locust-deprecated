@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+#  myservice:
+#    build:
+#      context: .
+
+
+  master:
+    build:
+      context: .
+    #    image: locustio/locust
+    ports:
+      - "8089:8089"
+    volumes:
+      - ./:/mnt/locust
+    command: -f /mnt/locust/locustfile.py --master -H http://localhost.com:8089
+
+  worker:
+    build:
+      context: .
+    #    image: locustio/locust
+    volumes:
+      - ./:/mnt/locust
+    command: -f /mnt/locust/locustfile.py --worker --master-host master
