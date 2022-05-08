@@ -44,8 +44,8 @@ image:
   pullPolicy: IfNotPresent
 
 service:
-  # type: ClusterIP
-  type: NodePort
+   type: ClusterIP
+#  type: NodePort
 
   annotations: {}
   extraLabels: {}

@@ -21,7 +21,7 @@ spec:
     protocol: TCP
     targetPort: 5558
   - name: master-p3
-    nodePort: 30044
+#    nodePort: 30044
     port: 8089
     protocol: TCP
     targetPort: 8089
