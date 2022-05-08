@@ -14,7 +14,7 @@ loadtest:
   # master.isConnectedToInternet -- If connected ot the internet
   isConnectedToInternet: true
   # loadtest.pip_packages -- a list of extra python pip packages to install
-  pip_packages: ["pandas"]
+  pip_packages: []
   # loadtest.environment -- environment variables used in the load test for both master and workers
   environment: {}
     # VAR: VALUE
