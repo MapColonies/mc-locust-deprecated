@@ -64,12 +64,11 @@ FROM locustio/locust
 RUN pip3 install pandas
 RUN pip3 install locust
 
-COPY . /mnt/locust/
-WORKDIR /mnt/locust/
+# COPY . /mnt/locust/
+# WORKDIR /mnt/locust/
 
-# COPY . /locust
+COPY . /locust
 
-# WORKDIR /locust
+WORKDIR /locust
 
-# RUN echo "hey"
-
+RUN bash -c 'echo -e ...'
