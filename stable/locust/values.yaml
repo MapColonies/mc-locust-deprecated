@@ -75,7 +75,7 @@ master:
   command:
     - sh
 #    - /config/docker-entrypoint.sh
-    - /docker-entrypoint.sh
+    - docker-entrypoint.sh
   strategy:
     type: RollingUpdate
   # master.pdb.enabled -- Whether to create a PodDisruptionBudget for the master pod
