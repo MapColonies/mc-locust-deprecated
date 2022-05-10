@@ -10,7 +10,7 @@ metadata:
 spec:
   path: {{ .Values.route.path | default "/" }}
   port:
-    targetPort: external
+    targetPort: 8089
   to:
     kind: Service
     name: {{ template "locust.fullname" . }}
