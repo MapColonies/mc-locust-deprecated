@@ -27,4 +27,4 @@
 
 cd /locust
 echo "hey"
-locust ${LOCUST_OPTS}
+#locust ${LOCUST_OPTS}
