@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from locust import HttpUser, task, between
-# from lib.example_functions import choose_random_page
+from lib.example_functions import choose_random_page
 import random
 import os
 default_headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'}
@@ -9,16 +9,16 @@ default_headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4
 
 
 
-def choose_random_page():
-    pages = [
-        '/policies/privacy/',
-        '/contact/',
-        '/about/',
-        '/search/howsearchworks/crawling-indexing/',
-        '/search/howsearchworks/algorithms/'
-    ]
-
-    return random.choice(pages)
+# def choose_random_page():
+#     pages = [
+#         '/policies/privacy/',
+#         '/contact/',
+#         '/about/',
+#         '/search/howsearchworks/crawling-indexing/',
+#         '/search/howsearchworks/algorithms/'
+#     ]
+#
+#     return random.choice(pages)
 
 class WebsiteUser(HttpUser):
     wait_time = between(1, 2)
