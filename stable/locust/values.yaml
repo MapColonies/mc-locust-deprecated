@@ -72,9 +72,9 @@ master:
   environment: {}
   # master.args -- Any extra command args for the master
   args: []
-  command:
-    - sh
-    - /config/docker-entrypoint.sh
+#  command:
+#    - sh
+#    - /config/docker-entrypoint.sh
   strategy:
     type: RollingUpdate
   # master.pdb.enabled -- Whether to create a PodDisruptionBudget for the master pod
@@ -116,9 +116,9 @@ worker:
   environment: {}
   # worker.args -- Any extra command args for the workers
   args: []
-  command:
-    - sh
-    - /config/docker-entrypoint.sh
+#  command:
+#    - sh
+#    - /config/docker-entrypoint.sh
   strategy:
     type: RollingUpdate
   # worker.restartPolicy -- worker pod's restartPolicy. Can be Always, OnFailure, or Never.
