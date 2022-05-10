@@ -13,7 +13,7 @@ spec:
     targetPort: external
   to:
     kind: Service
-    name: {{ template "locust.fullname" . }}-qa
+    name: {{ template "locust.fullname" . }}
   {{- if .Values.route.https }}
   tls:
     termination: edge
