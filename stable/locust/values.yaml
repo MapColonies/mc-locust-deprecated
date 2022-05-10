@@ -39,8 +39,8 @@ loadtest:
   locustCmd: "/usr/local/bin/locust"
 
 image:
-  repository: acrarolibotnonprod.azurecr.io/locust-automation:0.0.1
-  tag: 2.4.0
+  repository: acrarolibotnonprod.azurecr.io/locust-automation
+  tag: 0.0.1
   pullPolicy: IfNotPresent
 
 service:
