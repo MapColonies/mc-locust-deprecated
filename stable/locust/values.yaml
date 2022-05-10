@@ -40,7 +40,7 @@ loadtest:
 
 image:
   repository: acrarolibotnonprod.azurecr.io/locust-automation
-  tag: 0.0.4
+  tag: 0.0.5
   pullPolicy: IfNotPresent
 
 service:
