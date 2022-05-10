@@ -126,7 +126,7 @@ worker:
 
 nameOverride: ""
 fullnameOverride: ""
-imagePullSecrets: acr-registry
+imagePullSecrets: ["acr-registry"]
 
 podSecurityContext: {}
   # fsGroup: 2000
