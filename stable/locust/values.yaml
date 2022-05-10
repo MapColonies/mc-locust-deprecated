@@ -39,7 +39,7 @@ loadtest:
   locustCmd: "/usr/local/bin/locust"
 
 image:
-  repository: locustio/locust
+  repository: acrarolibotnonprod.azurecr.io/locust-automation:0.0.1
   tag: 2.4.0
   pullPolicy: IfNotPresent
 
@@ -126,7 +126,7 @@ worker:
 
 nameOverride: ""
 fullnameOverride: ""
-imagePullSecrets: []
+imagePullSecrets: acr-registry
 
 podSecurityContext: {}
   # fsGroup: 2000
