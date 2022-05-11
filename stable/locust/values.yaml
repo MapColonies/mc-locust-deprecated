@@ -4,7 +4,7 @@ loadtest:
   # loadtest.locust_locustfile -- the name of the locustfile
   locust_locustfile: main.py
   # loadtest.locust_locustfile_path -- the path of the locustfile (without trailing backslash)
-  locust_locustfile_path: "/locust/stable/locust/locustfiles/"
+  locust_locustfile_path: "/mnt/locust/stable/locust/locustfiles/"
   # loadtest.locust_locustfile_configmap -- name of a configmap containing your locustfile (default uses the example locustfile)
   locust_locustfile_configmap: "my-loadtest-locustfile"
   # loadtest.locust_lib_configmap -- name of a configmap containing your lib (default uses the example lib)

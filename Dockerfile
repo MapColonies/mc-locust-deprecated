@@ -66,7 +66,7 @@ FROM locustio/locust
 
 # COPY . /mnt/locust/
 # WORKDIR /mnt/locust/
-WORKDIR /locust
+WORKDIR /mnt/locust
 
 COPY . .
 
