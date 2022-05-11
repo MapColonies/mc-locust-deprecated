@@ -2,7 +2,7 @@ loadtest:
   # loadtest.name -- a name used for resources and settings in this load test
   name: locust_loadtest
   # loadtest.locust_locustfile -- the name of the locustfile
-  locust_locustfile: hi.py
+  locust_locustfile: main.py
   # loadtest.locust_locustfile_path -- the path of the locustfile (without trailing backslash)
   locust_locustfile_path: "/mnt/locust/tester/example"
   # loadtest.locust_locustfile_configmap -- name of a configmap containing your locustfile (default uses the example locustfile)

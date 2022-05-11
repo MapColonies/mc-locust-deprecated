@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from locust import HttpUser, task, between
-# from lib.example_functions import choose_random_page
+from lib.example_functions import choose_random_page
 import random
 import os
 import glob
