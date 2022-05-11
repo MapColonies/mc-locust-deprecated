@@ -2,9 +2,9 @@ loadtest:
   # loadtest.name -- a name used for resources and settings in this load test
   name: locust_loadtest
   # loadtest.locust_locustfile -- the name of the locustfile
-  locust_locustfile: main.py
+  locust_locustfile: hi.py
   # loadtest.locust_locustfile_path -- the path of the locustfile (without trailing backslash)
-  locust_locustfile_path: "/mnt/locust/stable/locust/locustfiles"
+  locust_locustfile_path: "/mnt/locust"
   # loadtest.locust_locustfile_configmap -- name of a configmap containing your locustfile (default uses the example locustfile)
   locust_locustfile_configmap: "my-loadtest-locustfile"
   # loadtest.locust_lib_configmap -- name of a configmap containing your lib (default uses the example lib)
@@ -40,7 +40,7 @@ loadtest:
 
 image:
   repository: acrarolibotnonprod.azurecr.io/locust-automation
-  tag: 0.0.8
+  tag: 0.0.9
   pullPolicy: IfNotPresent
 
 service:
@@ -52,7 +52,7 @@ service:
 
 master:
   # master.image -- A custom docker image including tag
-  image: "acrarolibotnonprod.azurecr.io/locust-automation:0.0.8"
+  image: "acrarolibotnonprod.azurecr.io/locust-automation:0.0.9"
   # master.logLevel -- Log level. Can be INFO or DEBUG
   logLevel: INFO
   # master.resources -- resources for the locust master
@@ -90,7 +90,7 @@ master:
 
 worker:
   # worker.image -- A custom docker image including tag
-  image: "acrarolibotnonprod.azurecr.io/locust-automation:0.0.8"
+  image: "acrarolibotnonprod.azurecr.io/locust-automation:0.0.9"
   # worker.logLevel -- Log level. Can be INFO or DEBUG
   logLevel: INFO
   replicas: 1
