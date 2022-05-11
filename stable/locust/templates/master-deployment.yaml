@@ -66,14 +66,14 @@ spec:
         resources:
 {{ toYaml .Values.master.resources | indent 10 }}
         volumeMounts:
-          {{- if .Values.loadtest.locust_locustfile_configmap}}
-          - name: locustfile
-            mountPath: "{{ .Values.loadtest.locust_locustfile_path }}"
-          {{- end }}
-          {{- if .Values.loadtest.locust_lib_configmap }}
-          - name: lib
-            mountPath: "{{ .Values.loadtest.locust_locustfile_path }}/lib"
-          {{- end }}
+#          {{- if .Values.loadtest.locust_locustfile_configmap}}
+#          - name: locustfile
+#            mountPath: "{{ .Values.loadtest.locust_locustfile_path }}"
+#          {{- end }}
+#          {{- if .Values.loadtest.locust_lib_configmap }}
+#          - name: lib
+#            mountPath: "{{ .Values.loadtest.locust_locustfile_path }}/lib"
+#          {{- end }}
           - name: config
             mountPath: /config
 {{- if .Values.extraConfigMaps }}
