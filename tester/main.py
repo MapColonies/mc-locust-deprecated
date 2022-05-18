@@ -1,4 +1,4 @@
-from locust import HttpUser, task, between
+from locust import FastHttpUser, task, between
 from tester.ew.op import choose_random_page
 import common.config as cfg
 import os
@@ -10,7 +10,7 @@ runner_url_list = do_something()
 ssn_reader = CSVReader("csv_data/data/wmts_csv_user.csv")
 
 
-class MyUser(HttpUser):
+class MyUser(FastHttpUser):
     @task
     def index(self):
         points = next(ssn_reader)
