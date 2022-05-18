@@ -1,5 +1,5 @@
 from locust_plugins.csvreader import CSVReader
-from locust import HttpUser, task
+from locust import FastHttpUser, task
 import common.config as conf
 
 
@@ -14,7 +14,7 @@ URL_TO_ITERATE = path_builder
 host_url = f"https://mapproxy-qa-mapproxy-route-raster.apps.v0h0bdx6.eastus.aroapp.io/"
 
 
-class MyUser(HttpUser):
+class MyUser(FastHttpUser):
     @task
     def index(self):
         points = next(ssn_reader)
