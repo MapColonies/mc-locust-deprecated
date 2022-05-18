@@ -40,7 +40,7 @@ loadtest:
 
 image:
   repository: acrarolibotnonprod.azurecr.io/locust-automation
-  tag: 0.1.2
+  tag: 0.1.4
   pullPolicy: IfNotPresent
 
 service:
@@ -52,7 +52,7 @@ service:
 
 master:
   # master.image -- A custom docker image including tag
-  image: "acrarolibotnonprod.azurecr.io/locust-automation:0.1.2"
+  image: "acrarolibotnonprod.azurecr.io/locust-automation:0.1.4"
   # master.logLevel -- Log level. Can be INFO or DEBUG
   logLevel: INFO
   # master.resources -- resources for the locust master
@@ -90,7 +90,7 @@ master:
 
 worker:
   # worker.image -- A custom docker image including tag
-  image: "acrarolibotnonprod.azurecr.io/locust-automation:0.1.2"
+  image: "acrarolibotnonprod.azurecr.io/locust-automation:0.1.4"
   # worker.logLevel -- Log level. Can be INFO or DEBUG
   logLevel: INFO
   replicas: 1
