@@ -5,12 +5,14 @@ import os
 import glob
 from csv_data.manipulation import do_something
 from locust_plugins.csvreader import CSVReader
+from locust import constant_throughput
 
 runner_url_list = do_something()
 ssn_reader = CSVReader("csv_data/data/wmts_csv_user.csv")
 
 
 class MyUser(FastHttpUser):
+    wait_time = constant_throughput(1)
     @task
     def index(self):
         points = next(ssn_reader)
