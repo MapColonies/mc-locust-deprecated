@@ -61,7 +61,7 @@
 
 
 FROM locustio/locust
-# RUN pip3 install pandas
+RUN pip3 install pandas
 # RUN pip3 install locust
 
 # COPY . /mnt/locust/
