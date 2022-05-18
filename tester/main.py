@@ -1,35 +1,24 @@
 from locust import HttpUser, task, between
 from tester.ew.op import choose_random_page
+import common.config as cfg
 import os
 import glob
-default_headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'}
+from csv_data.manipulation import do_something
+from locust_plugins.csvreader import CSVReader
+
+runner_url_list = do_something()
+ssn_reader = CSVReader("csv_data/data/wmts_csv_user.csv")
 
 
+class MyUser(HttpUser):
+    @task
+    def index(self):
+        points = next(ssn_reader)
+        self.client.get(
+            f"{cfg.host}/{cfg.layer_type}/{cfg.layer}/{cfg.projection}/{points[0]}/{points[1]}/{points[2]}{cfg.image_format}",
+            headers=cfg.default_headers)
+        print(
+            f"{cfg.host}/{cfg.layer_type}/{cfg.layer}/{cfg.projection}/{points[0]}/{points[1]}/{points[2]}{cfg.image_format}")
+        # print(customer)
 
-#
-# def choose_random_page():
-#     pages = [
-#         '/policies/privacy/',
-#         '/contact/',
-#         '/about/',
-#         '/search/howsearchworks/crawling-indexing/',
-#         '/search/howsearchworks/algorithms/'
-#     ]
-#
-#     return random.choice(pages)
-
-class WebsiteUser(HttpUser):
-    wait_time = between(1, 2)
-
-    @task(1)
-    def get_index(self):
-        self.client.get("/", headers=default_headers)
-        print(glob.glob(os.getcwd()))
-        print("Working on task 1")
-
-
-    @task(3)
-    def get_random_page(self):
-        self.client.get(choose_random_page(), headers=default_headers)
-        print("Working on task 2")
-
+    host = cfg.host
