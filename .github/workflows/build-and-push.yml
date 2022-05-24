@@ -1,13 +1,10 @@
-name: build-and-push
-
 on:
   push:
     tags:
       - 'v*'
 
 jobs:
-  build-and-push:
-    name: azure build and push
+  build_and_push:
     runs-on: ubuntu-latest
 
     steps:
