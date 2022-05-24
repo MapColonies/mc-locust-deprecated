@@ -18,6 +18,7 @@ class MyUser(FastHttpUser):
     @task
     def index(self):
         # danny comment
+
         points = next(ssn_reader)
         print(points)
         self.client.get(
