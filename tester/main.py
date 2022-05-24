@@ -8,14 +8,18 @@ from locust_plugins.csvreader import CSVReader
 from locust import constant_throughput
 
 runner_url_list = do_something()
+# ssn_reader = CSVReader("csv_data/data/wmts_csv_user.csv")
 ssn_reader = CSVReader("csv_data/data/wmts_csv_user.csv")
 
 
 class MyUser(FastHttpUser):
     wait_time = constant_throughput(1)
+
     @task
     def index(self):
+        # danny comment
         points = next(ssn_reader)
+        print(points)
         self.client.get(
             f"/wmts/2022_04_04T12_01_48Z_MAS_6_ORT_247557-Orthophoto/newGrids/1/0/1.png",
             headers=cfg.default_headers)
