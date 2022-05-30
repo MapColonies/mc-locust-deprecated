@@ -33,4 +33,4 @@ class MyUser(FastHttpUser):
         #     f"/{cfg.layer_type}/{cfg.layer}/{cfg.projection}/{points[0]}/{points[1]}/{points[2]}{cfg.image_format}")
         # print(customer)
 
-    host = cfg.host
+    host = cfg.HOST
