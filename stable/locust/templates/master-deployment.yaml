@@ -94,6 +94,11 @@ spec:
             value: "{{ .Values.master.logLevel }}"
           - name: LOCUST_LOCUSTFILE
             value: "{{ .Values.loadtest.locust_locustfile_path }}/{{ .Values.loadtest.locust_locustfile }}"
+          - name: SECRET_VALUE_API
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.secret_name_api_key_locust }}
+                key: x-api-key
 {{- end }}
 {{- range $key, $value := .Values.loadtest.environment }}
           - name: {{ $key }}
