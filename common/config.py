@@ -1,5 +1,5 @@
 import os
-import common.auth
+# import common.auth
 
 """ CSV """
 requests_file = "wmts_csv_user.csv"
