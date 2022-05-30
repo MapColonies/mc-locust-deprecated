@@ -11,4 +11,3 @@ def choose_random_page():
     ]
 
     return random.choice(pages)
-

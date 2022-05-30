@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/ENV bash
 
 set -o errexit
 set -o pipefail
