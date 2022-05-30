@@ -91,7 +91,7 @@ spec:
           - name: SECRET_VALUE_API
             valueFrom:
               secretKeyRef:
-                name: { { .Values.loadtest.secret_name_api_key_locust } }
+                name: {{ .Values.loadtest.secret_name_api_key_locust }}
                 key: x-api-key
 {{- end }}
 {{- range $key, $value := .Values.worker.environment }}
