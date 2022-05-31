@@ -16,7 +16,7 @@ loadtest:
   # loadtest.pip_packages -- a list of extra python pip packages to install
   pip_packages: []
   # loadtest.environment -- environment variables used in the load test for both master and workers
-  environment: {danny: "shlomi", ronen: "shachar"}
+  environment: {projection: "shlomi", gridName: "shachar", layer: "Artzi_Full_GPKG", users: 15, layer_type: "none", test_to_run: "Lateron"}
     # VAR: VALUE
   # loadtest.environment_secret -- environment variables used in the load test for both master and workers, stored as secrets
   environment_secret: {}
