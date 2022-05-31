@@ -24,7 +24,7 @@ path_builder = f"{layer_type}/{layer}/{projection}/TileMatrix/TileCol/TileRow{im
 
 HOST = "https://pycsw-qa-pycsw-route-raster.apps.v0h0bdx6.eastus.aroapp.io/"
 PORT = 80
-REQUEST_HEADER = {'X-API-KEY': os.environ.get('SECRET_VALUE')}
+REQUEST_HEADER = {'X-API-KEY': os.environ.get('SECRET_VALUE_API')}
 PARAMS = {'service': 'CSW',
           'request': 'GetRecordById',
           'typenames': 'mc:MCRasterRecord',
