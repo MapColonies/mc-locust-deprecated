@@ -5,8 +5,8 @@ import os
 requests_file = "wmts_csv_user.csv"
 
 # test settings
-layer = "2022_04_04T12_01_48Z_MAS_6_ORT_247557-Orthophoto"
-gridName = "newGrids"
+layer = "Artzi_Full_GPKG"
+gridName = "epsg4326gridUL"
 version = "1.0.0"
 projection = "newGrids"
 image_format = ".png"
