@@ -8,7 +8,7 @@ requests_file = "wmts_csv_user.csv"
 layer = "Artzi_Full_GPKG"
 gridName = "epsg4326gridUL"
 version = "1.0.0"
-projection = "newGrids"
+projection = "epsg4326gridUL"
 image_format = ".png"
 users = 25
 
