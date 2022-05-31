@@ -1,7 +1,7 @@
 locust~=2.8.6
 pandas~=1.4.2
 locust_plugins
-python-dotenv~=0.20.0
 requests~=2.27.1
 xmltodict~=0.13.0
 setuptools~=60.2.0
+wheel

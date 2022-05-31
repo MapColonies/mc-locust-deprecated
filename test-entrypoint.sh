@@ -1,1 +1,0 @@
-#docker run -p 8089:8089 -v $PWD:/mnt/locust automation-locust -f /mnt/locust/locustfile.py --headless -u 10 -r 10
