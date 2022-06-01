@@ -41,9 +41,6 @@ def create_file(filename):
     else:
         pass
 
-def create_json_formatter(logs_format):
-    j_formatter = CustomJsonFormatter(logs_format)
-    return j_formatter
 
 def set_file_handler(levels):
     if levels == 'error':
@@ -54,7 +51,7 @@ def set_file_handler(levels):
 def set_stream_handler(levels, logs_format):
     if levels == 'error':
         handler = MyLog.stream_handler
-        handler.setFormatter(create_json_formatter(logs_format))
+        handler.setFormatter(CustomJsonFormatter(logs_format))
         logger.addHandler(MyLog.stream_handler)
 
 
@@ -68,10 +65,7 @@ def get_current_time():
     return time.strftime(MyLog.date, time.localtime(time.time()))
 
 
-class MyLog(CustomJsonFormatter):
-    def __init__(self):
-        super().__init__()
-
+class MyLog:
     path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     log_file = path + '/Log/log.log'
     err_file = path + '/Log/err.log'
@@ -114,15 +108,35 @@ class MyLog(CustomJsonFormatter):
         logger.error("[CRITICAL " + get_current_time() + "]" + log_meg)
         remove_handler('critical')
 
-
-
     @staticmethod
-    def stream_debug(log_meg, log_fmt):
-        set_stream_handler('error',logs_format=log_fmt)
+    def stream_error(log_meg, log_fmt):
+        set_stream_handler(levels='error', logs_format=log_fmt)
         logger.error(log_meg)
         remove_handler('error')
 
+    @staticmethod
+    def stream_debug(log_meg, log_fmt):
+        set_stream_handler(levels='debug', logs_format=log_fmt)
+        logger.debug(log_meg)
+        remove_handler('debug')
 
-shay = MyLog.stream_debug("success",'%(timestamp)s %(level)s %(name)s %(message)s' )
+    @staticmethod
+    def stream_info(log_meg, log_fmt):
+        set_stream_handler(levels='info', logs_format=log_fmt)
+        logger.debug(log_meg)
+        remove_handler('info')
+
+    @staticmethod
+    def stream_critical(log_meg, log_fmt):
+        set_stream_handler(levels='critical', logs_format=log_fmt)
+        logger.debug(log_meg)
+        remove_handler('critical')
+
+    @staticmethod
+    def stream_warning(log_meg, log_fmt):
+        set_stream_handler(levels='warning', logs_format=log_fmt)
+        logger.debug(log_meg)
+        remove_handler('warning')
+
 
 
