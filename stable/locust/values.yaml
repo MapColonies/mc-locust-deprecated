@@ -2,7 +2,7 @@ loadtest:
   # loadtest.name -- a name used for resources and settings in this load test
   name: locust-loadtest
   # loadtest.locust_locustfile -- the name of the locustfile
-  locust_locustfile: main.py
+  locust_locustfile: events.py
   # loadtest.locust_locustfile_path -- the path of the locustfile (without trailing backslash)
   locust_locustfile_path: "/mnt/locust/tester"
   # loadtest.locust_locustfile_configmap -- name of a configmap containing your locustfile (default uses the example locustfile)
@@ -56,14 +56,15 @@ master:
   image: "acrarolibotnonprod.azurecr.io/locust-automation:0.2.6"
   # master.logLevel -- Log level. Can be INFO or DEBUG
   logLevel: INFO
-  # master.resources -- resources for the locust master
-  resources: 
-    limits:
-      cpu: 500Mi
-      memory: 1024Mi
-    requests:
-      cpu: 500Mi
-      memory: 1024Mi
+  # master.resources -- resources for the locust master to add
+  resources: {}
+
+    # limits:
+    #   cpu: 2000m
+    #   memory: 1024Mi
+    # requests:
+    #   cpu: 1000m
+    #   memory: 1024Mi
   serviceAccountAnnotations: {}
   # master.deploymentAnnotations -- Annotations on the deployment for master
   deploymentAnnotations: {}
