@@ -108,22 +108,6 @@ spec:
           - name: {{ $key }}
             value: {{ $value | quote }}
 {{- end }}
-{{- range $key, $value := .Values.loadtest.environment_secret }}
-          - name: {{ $key }}
-            valueFrom:
-              secretKeyRef:
-                name: {{ template "locust.fullname" $ }}
-                key: {{ $key }}
-{{- end }}
-{{- range $key, $values := .Values.loadtest.environment_external_secret }}
-{{- range $value := $values }}
-          - name: {{ $value }}
-            valueFrom:
-              secretKeyRef:
-                name: {{ $key }}
-                key: {{ $value }}
-{{- end }}
-{{- end }}
 {{- end }}
         ports:
           - containerPort: 8089

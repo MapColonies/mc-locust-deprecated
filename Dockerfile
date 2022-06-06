@@ -69,7 +69,7 @@ RUN pip3 install locust_plugins
 # WORKDIR /mnt/locust/
 WORKDIR /mnt/locust
 
-COPY . .
+COPY . /mnt/locust/
 
 
 
