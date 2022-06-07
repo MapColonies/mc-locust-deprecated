@@ -2,7 +2,6 @@ from locust import FastHttpUser, task, between
 from tester.ew.op import choose_random_page
 import common.config as cfg
 import os
-import glob
 from csv_data.manipulation import do_something
 from locust_plugins.csvreader import CSVReader
 from locust import constant_throughput

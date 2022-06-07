@@ -1,10 +1,10 @@
 loadtest:
   # loadtest.name -- a name used for resources and settings in this load test
-  name: locust_loadtest
+  name: locust-loadtest
   # loadtest.locust_locustfile -- the name of the locustfile
-  locust_locustfile: main.py
+  locust_locustfile: pycsw.py
   # loadtest.locust_locustfile_path -- the path of the locustfile (without trailing backslash)
-  locust_locustfile_path: "/mnt/locust/tester"
+  locust_locustfile_path: "/mnt/locust/tests"
   # loadtest.locust_locustfile_configmap -- name of a configmap containing your locustfile (default uses the example locustfile)
   locust_locustfile_configmap: "my-loadtest-locustfile"
   # loadtest.locust_lib_configmap -- name of a configmap containing your lib (default uses the example lib)
@@ -16,10 +16,10 @@ loadtest:
   # loadtest.pip_packages -- a list of extra python pip packages to install
   pip_packages: []
   # loadtest.environment -- environment variables used in the load test for both master and workers
-  environment: {projection: "shlomi", gridName: "opa", layer: "Artzi_Full_GPKG", users: 15, layer_type: "none", test_to_run: "Lateron"}
+  environment: {projection: "roie", gridName: "opa", layer: "Artzi_Full_GPKG", users: 15, layer_type: "none", test_to_run: "Lateron"}
     # VAR: VALUE
   # loadtest.environment_secret -- environment variables used in the load test for both master and workers, stored as secrets
-  environment_secret: {}
+  environment_secret: 'sss'
     # VAR: VALUE
   # loadtest.environment_external_secret -- environment variables used in the load test for both master and workers, stored in secrets created outside this chart. Each secret contains a list of values in it. Usage: `secret_name: [AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY]`
   environment_external_secret: {}
@@ -41,7 +41,7 @@ loadtest:
 
 image:
   repository: acrarolibotnonprod.azurecr.io/locust-automation
-  tag: 0.2.3
+  tag: 0.2.7
   pullPolicy: IfNotPresent
 
 service:
@@ -53,11 +53,12 @@ service:
 
 master:
   # master.image -- A custom docker image including tag
-  image: "acrarolibotnonprod.azurecr.io/locust-automation:0.2.3"
+  image: "acrarolibotnonprod.azurecr.io/locust-automation:0.2.7"
   # master.logLevel -- Log level. Can be INFO or DEBUG
   logLevel: INFO
-  # master.resources -- resources for the locust master
+  # master.resources -- resources for the locust master to add
   resources: {}
+
     # limits:
     #   cpu: 2000m
     #   memory: 1024Mi
@@ -91,7 +92,7 @@ master:
 
 worker:
   # worker.image -- A custom docker image including tag
-  image: "acrarolibotnonprod.azurecr.io/locust-automation:0.2.3"
+  image: "acrarolibotnonprod.azurecr.io/locust-automation:0.2.7"
   # worker.logLevel -- Log level. Can be INFO or DEBUG
   logLevel: INFO
   replicas: 1
