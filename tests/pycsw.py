@@ -1,6 +1,11 @@
 from locust import HttpUser , task
 from locust_plugins.csvreader import CSVReader
 import common.config as cfg
+import time
+
+
+print("hello")
+
 
 
 ssn_reader = CSVReader("csv_data/data/wmts_csv_user.csv")
@@ -8,11 +13,20 @@ class MyUser(HttpUser):
     # wait_time = constant_throughput(1)
     @task(1)
     def index(self):
+        start = time.time()
         points = next(ssn_reader)
         print(points)
         points = next(ssn_reader)
         print(points)
-        print("One Task Finished")
+        points = next(ssn_reader)
+        print(points)
+        points = next(ssn_reader)
+        print(points)
+        points = next(ssn_reader)
+        print(points)
+        end = time.time()
+        total = end - start
+        print("One Task Finished {total}".format(total=total))
         # self.client.get(
         
         #     f"/wmts/2022_04_04T12_01_48Z_MAS_6_ORT_247557-Orthophoto/newGrids/1/0/1.png",
