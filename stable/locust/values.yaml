@@ -2,9 +2,9 @@ loadtest:
   # loadtest.name -- a name used for resources and settings in this load test
   name: locust-loadtest
   # loadtest.locust_locustfile -- the name of the locustfile
-  locust_locustfile: events.py
+  locust_locustfile: pycsw.py
   # loadtest.locust_locustfile_path -- the path of the locustfile (without trailing backslash)
-  locust_locustfile_path: "/mnt/locust/tester"
+  locust_locustfile_path: "/mnt/locust/tests"
   # loadtest.locust_locustfile_configmap -- name of a configmap containing your locustfile (default uses the example locustfile)
   locust_locustfile_configmap: "my-loadtest-locustfile"
   # loadtest.locust_lib_configmap -- name of a configmap containing your lib (default uses the example lib)
