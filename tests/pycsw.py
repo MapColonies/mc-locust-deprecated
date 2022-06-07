@@ -1,4 +1,5 @@
 from locust import HttpUser , task
+from locust_plugins import StopUser 
 from locust_plugins.csvreader import CSVReader
 import common.config as cfg
 import time
@@ -14,7 +15,7 @@ class MyUser(HttpUser):
     @task(1)
     def index(self):
         start = time.time()
-        for i in range(0, 5):
+        for i in range(0, 25):
             points = next(ssn_reader)
             print(points)
         # points = next(ssn_reader)
@@ -28,6 +29,7 @@ class MyUser(HttpUser):
         end = time.time()
         total = end - start
         print("One Task Finished {total}".format(total=total))
+        raise StopUser("Stop User")
         # self.client.get(
         
         #     f"/wmts/2022_04_04T12_01_48Z_MAS_6_ORT_247557-Orthophoto/newGrids/1/0/1.png",
