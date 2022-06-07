@@ -55,7 +55,7 @@ master:
   # master.image -- A custom docker image including tag
   image: "acrarolibotnonprod.azurecr.io/locust-automation:0.3.2"
   # master.logLevel -- Log level. Can be INFO or DEBUG
-  logLevel: DEBUG
+  logLevel: INFO
   # master.resources -- resources for the locust master to add
   resources: {}
 
@@ -84,9 +84,9 @@ master:
     enabled: false
   # master.auth.enabled -- When enabled, UI basic auth will be enforced with the given username and password
   auth:
-    enabled: false
-    username: ""
-    password: ""
+    enabled: true
+    username: "danny"
+    password: "danny"
   # master.restartPolicy -- master pod's restartPolicy. Can be Always, OnFailure, or Never.
   restartPolicy: Always
 

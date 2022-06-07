@@ -12,7 +12,7 @@ class MyUser(HttpUser):
         print(points)
         points = next(ssn_reader)
         print(points)
-        exit(1)
+        print("One Task Finished")
         # self.client.get(
         
         #     f"/wmts/2022_04_04T12_01_48Z_MAS_6_ORT_247557-Orthophoto/newGrids/1/0/1.png",
