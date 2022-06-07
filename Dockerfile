@@ -63,6 +63,7 @@
 FROM locustio/locust
 RUN pip3 install pandas
 RUN pip3 install locust_plugins
+RUN pip3 install xmltodict
 # RUN pip3 install locust
 
 # COPY . /mnt/locust/

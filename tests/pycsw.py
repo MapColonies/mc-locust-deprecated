@@ -1,13 +1,26 @@
-from email import header
-import os
-import requests
-# import xmltodict
-import json
-from common.config import REQUEST_HEADER, PARAMS, PORT, HOST
+from locust import HttpUser
 
-url = 'https://pycsw-qa-pycsw-route-raster.apps.v0h0bdx6.eastus.aroapp.io/?service=CSW&request=GetRecordById&typenames=mc:MCRasterRecord&ElementSetName=full&resultType=results&outputSchema=http://schema.mapcolonies.com/raster&version=2.0.2&id=3fc674cd-7b77-40ac-8fa3-96b6b4c77f3b'
 
-print(REQUEST_HEADER)
-# response = requests.get(url=url, params=PARAMS, headers=REQUEST_HEADER)
-# print(response)
-# print(os.environ.get('DEFAULT_HEADERS'))
+class MyUser(HttpUser):
+    # wait_time = constant_throughput(1)
+    @task(1)
+    def index(self):
+        points = next(ssn_reader)
+        print(points)
+        points = next(ssn_reader)
+        print(points)
+        exit(1)
+        # self.client.get(
+        
+        #     f"/wmts/2022_04_04T12_01_48Z_MAS_6_ORT_247557-Orthophoto/newGrids/1/0/1.png",
+        #     headers=cfg.default_headers)
+        # print(
+        #     f"/wmts/2022_04_04T12_01_48Z_MAS_6_ORT_247557-Orthophoto/newGrids/1/0/1.png")
+        # self.client.get(
+        #     f"/{cfg.layer_type}/{cfg.layer}/{cfg.projection}/{points[0]}/{points[1]}/{points[2]}{cfg.image_format}",
+        #     headers=cfg.REQUEST_HEADER)
+        # print(
+        #     f"/{cfg.layer_type}/{cfg.layer}/{cfg.projection}/{points[0]}/{points[1]}/{points[2]}{cfg.image_format}")
+        # print(customer)
+
+    host = cfg.HOST
