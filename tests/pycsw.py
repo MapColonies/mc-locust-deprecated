@@ -1,6 +1,9 @@
-from locust import HttpUser
+from locust import HttpUser , task
+from locust_plugins.csvreader import CSVReader
+import common.config as cfg
 
 
+ssn_reader = CSVReader("csv_data/data/wmts_csv_user.csv")
 class MyUser(HttpUser):
     # wait_time = constant_throughput(1)
     @task(1)
