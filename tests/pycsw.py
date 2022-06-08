@@ -3,12 +3,12 @@ from locust_plugins import StopUser
 from locust_plugins.csvreader import CSVReader
 import common.config as cfg
 import time
-
+import logging
 
 print("hello")
 
 
-
+logging.info("Reading CSV file")
 ssn_reader = CSVReader("csv_data/data/wmts_csv_user.csv")
 class MyUser(HttpUser):
     # wait_time = constant_throughput(1)
@@ -29,6 +29,7 @@ class MyUser(HttpUser):
         end = time.time()
         total = end - start
         print("One Task Finished {total}".format(total=total))
+        self.client.get("/")
         raise StopUser("Stop User")
         # self.client.get(
         
