@@ -1,6 +1,27 @@
+import random
 import requests as req
 import re
-import xml.etree.ElementTree as ET
+import xmltodict
+import os
+
+# todo code review
+# todo add random to ids
+
+header = {"x-api-key": os.environ['X-API-KEY']}
+csw_url = "https://pycsw-qa-pycsw-nginx-route-raster.apps.v0h0bdx6.eastus.aroapp.io/pycsw/?service=CSW&request" \
+          "=GetRecordById&typenames=mc:MCRasterRecord&ElementSetName=full&resultType=results&outputSchema=http" \
+          "://schema.mapcolonies.com/raster&version=2.0.2&id= "
+url_get_ids = r'https://pycsw-qa-pycsw-nginx-route-raster.apps.v0h0bdx6.eastus.aroapp.io/pycsw'
+get_id_body = """
+<csw:GetRecords xmlns:csw="http://www.opengis.net/cat/csw/2.0.2" service="CSW" maxRecords="5" startPosition="1" resultType="results" outputSchema="http://schema.mapcolonies.com/raster" version="2.0.2" xmlns:mc="http://schema.mapcolonies.com/raster" >
+
+<csw:Query typeNames="mc:MCRasterRecord">
+
+<csw:ElementSetName>full</csw:ElementSetName>
+
+</csw:Query>
+
+</csw:GetRecords>"""
 
 
 def url_validator(url):
@@ -26,7 +47,7 @@ def get_exception(url, ex, fail=True):
         raise print(msg)
 
 
-def post_request(url, body='', params='', headers=''):
+def post_request(url, body='', params='', headers=None):
     """
     send post request, and return the response
     """
@@ -34,48 +55,40 @@ def post_request(url, body='', params='', headers=''):
 
     try:
         response = req.post(url=url, data=body, headers=headers, params=params)
-        if response.status_code == 200:
-            return response.content
-
+        return response
     except Exception as ex:
         get_exception(url, ex)
 
 
-def extract_ids(response_content, xmlns_adress):
-    ids = []
-    tree = response_content
-    root = tree.getroot()
-    ET.register_namespace("", xmlns_adress)
+def extract_ids():
+    """
 
-    for subnet in root.iter(f'{xmlns_adress}mc:id'):
-        print(subnet.text)
-        ids.append(subnet.text)
-
-    return ids
-
-def check_id( ids_array):
-    for id in ids_array:
-        requests_url = f"url={id}" #send id to the url address
-
-
-
-
-
+    :return: {state: bool, resp: []}
+    """
+    resp = post_request(url=url_get_ids, body=get_id_body, headers=header)
+    if resp.status_code != 200:
+        print(f"Failed on post request with status code: {resp.status_code}, and message: {resp.text}")
+        return {"state": False, "resp": [resp.text]}
+    raw_data = resp.text
+    records_ids = []
+    csw_dict = xmltodict.parse(raw_data)
+    records = csw_dict["csw:GetRecordsResponse"]["csw:SearchResults"]["mc:MCRasterRecord"]
+    for record in records:
+        for key, value in record.items():
+            if key == "mc:id":
+                records_ids.append(value)
+    return {"state": True, "resp": records_ids}
 
 
+def check_id():
+    id_list = extract_ids()
+    resp_list = []
+    if id_list["state"]:
+        for id_item in id_list["resp"]:
+            response = post_request(url=csw_url+id_item, headers=header)
+            resp_list.append(response)
+            print("success!")
+    return resp_list
 
 
-
-
-
-
-
-
-
-
-# tree = ET.parse('csr1kv_file.xml')
-# root = tree.getroot()
-# ET.register_namespace("", "http://www.test.com/esc/esc")
-#
-# for subnet in root.iter('address'):
-#     print(subnet)
+check_id()
