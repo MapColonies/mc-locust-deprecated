@@ -11,11 +11,11 @@ class ApiTasks(TaskSet):
 
     def on_start(self):
         """ on_start is called when a Locust start before any task is scheduled """
-        pass
+        print("on start")
 
     def on_stop(self):
         """ on_stop is called when the TaskSet is stopping """
-        pass
+        print("Stoped")
 
     @task(1)
     def FirstTest(self):
