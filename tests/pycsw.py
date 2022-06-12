@@ -8,7 +8,7 @@ import logging
 print("hello")
 
 
-logging.info("Reading CSV file")
+logging.error("Reading CSV file")
 ssn_reader = CSVReader("csv_data/data/wmts_csv_user.csv")
 class MyUser(HttpUser):
     # wait_time = constant_throughput(1)
