@@ -10,7 +10,7 @@ import os
 header = {"x-api-key": os.environ['X-API-KEY']}
 csw_url = "https://pycsw-qa-pycsw-nginx-route-raster.apps.v0h0bdx6.eastus.aroapp.io/pycsw/?service=CSW&request" \
           "=GetRecordById&typenames=mc:MCRasterRecord&ElementSetName=full&resultType=results&outputSchema=http" \
-          "://schema.mapcolonies.com/raster&version=2.0.2&id= "
+          "://schema.mapcolonies.com/raster&version=2.0.2&id="
 url_get_ids = r'https://pycsw-qa-pycsw-nginx-route-raster.apps.v0h0bdx6.eastus.aroapp.io/pycsw'
 get_id_body = """
 <csw:GetRecords xmlns:csw="http://www.opengis.net/cat/csw/2.0.2" service="CSW" maxRecords="5" startPosition="1" resultType="results" outputSchema="http://schema.mapcolonies.com/raster" version="2.0.2" xmlns:mc="http://schema.mapcolonies.com/raster" >
@@ -80,8 +80,7 @@ def extract_ids():
     return {"state": True, "resp": records_ids}
 
 
-def check_id():
-    id_list = extract_ids()
+def check_id(id_list):
     resp_list = []
     if id_list["state"]:
         for id_item in id_list["resp"]:
@@ -90,5 +89,4 @@ def check_id():
             print("success!")
     return resp_list
 
-
-check_id()
+check_id(extract_ids())

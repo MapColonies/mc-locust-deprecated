@@ -2,7 +2,7 @@
 #set -e
 #LOCUST_MODE=${LOCUST_MODE:-standalone}
 #LOCUST_MASTER_BIND_PORT=${LOCUST_MASTER_BIND_PORT:-5557}
-#LOCUST_FILE=${LOCUST_FILE:-locustfile.py}
+#LOCUST_FILE=${LOCUST_FILE:-locustfile1.py}
 #
 #if [ -z ${ATTACKED_HOST+x} ] ; then
 #    echo "You need to set the URL of the host to be tested (ATTACKED_HOST)."
@@ -29,4 +29,4 @@ cd /locust
 # echo "hey"
 #locust ${LOCUST_OPTS}
 
-#docker run -p 8089:8089 -v $PWD:/mnt/locust automation-locust -f /mnt/locust/locustfile.py --headless -u 10 -r 10
+#docker run -p 8089:8089 -v $PWD:/mnt/locust automation-locust -f /mnt/locust/locustfile1.py --headless -u 10 -r 10

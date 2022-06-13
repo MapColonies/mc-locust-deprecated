@@ -70,9 +70,9 @@ RUN pip3 install xmltodict
 # WORKDIR /mnt/locust/
 WORKDIR /mnt/locust
 
-COPY . /mnt/locust/
+# COPY . /mnt/locust/
 
-EXPOSE 8089 5557 5558
+# EXPOSE 8089 5557 5558
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
 # EXPOSE 8089
