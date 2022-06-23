@@ -45,7 +45,7 @@ class UserBehaviour(HttpUser):
         print(self.response_id_data)
 
     def on_start(self):
-        self.get_id_data()
+        self.extract_ids()
 
 
 

@@ -60,24 +60,24 @@ def post_request(url, body='', params='', headers=None):
         get_exception(url, ex)
 
 
-def extract_ids():
-    """
-
-    :return: {state: bool, resp: []}
-    """
-    resp = post_request(url=url_get_ids, body=get_id_body, headers=header)
-    if resp.status_code != 200:
-        print(f"Failed on post request with status code: {resp.status_code}, and message: {resp.text}")
-        return {"state": False, "resp": [resp.text]}
-    raw_data = resp.text
-    records_ids = []
-    csw_dict = xmltodict.parse(raw_data)
-    records = csw_dict["csw:GetRecordsResponse"]["csw:SearchResults"]["mc:MCRasterRecord"]
-    for record in records:
-        for key, value in record.items():
-            if key == "mc:id":
-                records_ids.append(value)
-    return {"state": True, "resp": records_ids}
+# def extract_ids():
+#     """
+#
+#     :return: {state: bool, resp: []}
+#     """
+#     resp = post_request(url=url_get_ids, body=get_id_body, headers=header)
+#     if resp.status_code != 200:
+#         print(f"Failed on post request with status code: {resp.status_code}, and message: {resp.text}")
+#         return {"state": False, "resp": [resp.text]}
+#     raw_data = resp.text
+#     records_ids = []
+#     csw_dict = xmltodict.parse(raw_data)
+#     records = csw_dict["csw:GetRecordsResponse"]["csw:SearchResults"]["mc:MCRasterRecord"]
+#     for record in records:
+#         for key, value in record.items():
+#             if key == "mc:id":
+#                 records_ids.append(value)
+#     return {"state": True, "resp": records_ids}
 
 
 def check_id(id_list):
@@ -89,4 +89,3 @@ def check_id(id_list):
             print("success!")
     return resp_list
 
-check_id(extract_ids())
