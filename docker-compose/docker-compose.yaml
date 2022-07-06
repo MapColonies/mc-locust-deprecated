@@ -14,7 +14,7 @@ services:
       - "8089:8089"
     volumes:
       - ./:/mnt/locust
-    command: -f /mnt/locust/locustfile.py --master -H http://localhost.com:8089
+    command: -f /mnt/locust/locustfile1.py --master -H http://localhost.com:8089
 
   worker:
     build:
@@ -22,4 +22,4 @@ services:
     #    image: locustio/locust
     volumes:
       - ./:/mnt/locust
-    command: -f /mnt/locust/locustfile.py --worker --master-host master
+    command: -f /mnt/locust/locustfile1.py --worker --master-host master
