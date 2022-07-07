@@ -10,3 +10,4 @@ class QuickstartUser(HttpUser):
         print("hello from task")
         # do_something()
 #
+

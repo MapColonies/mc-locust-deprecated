@@ -30,7 +30,8 @@ class ApiTasks(TaskSet):
         """
         resp = post_request(url=url_get_ids, body=get_id_body, headers=header)
         if resp.status_code != 200:
-            print(f"Failed on post request with status code: {resp.status_code}, and message: {resp.text}")
+            print(
+                f"Failed on post request with status code: {resp.status_code}, and message: {resp.text}")
             return {"state": False, "resp": [resp.text]}
         raw_data = resp.text
         records_ids = []
@@ -41,7 +42,6 @@ class ApiTasks(TaskSet):
                 if key == "mc:id":
                     records_ids.append(value)
         return {"state": True, "resp": records_ids}
-
 
     def on_start(self):
         """ on_start is called when a Locust start before any task is scheduled """
@@ -67,5 +67,3 @@ class ApiTasks(TaskSet):
         end = time.time()
         total = end - start
         print('First task..')
-
-
