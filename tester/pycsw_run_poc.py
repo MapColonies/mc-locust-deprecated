@@ -3,7 +3,7 @@ import uuid
 import json
 import common.config as cfg 
 import xmltodict
-from locust import TaskSet, task, events
+from locust import HttpUser, TaskSet, task, events
 from requests import Response
 from common.config import SUB_URL
 # from tools import GeneralTools
@@ -20,7 +20,7 @@ def _(environment, **_kwargs):
     print("test listner")
 
 
-class ApiTasks(TaskSet):
+class ApiTasks(HttpUser):
 
     def extract_ids(self):
         """

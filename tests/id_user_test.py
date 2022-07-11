@@ -27,8 +27,8 @@ class UserBehaviour(HttpUser):
 
     @task(1)
     def index(self):
-        start = time.time()
-        print("--- running Task")
+        # start = time.time()
+        # print("--- running Task")
         # sub_url = "pycsw/?service=CSW&request" \
         #     "=GetRecordById&typenames=mc:MCRasterRecord&ElementSetName=full&resultType=results&outputSchema=http" \
         #     "://schema.mapcolonies.com/raster&version=2.0.2&id="
@@ -37,8 +37,8 @@ class UserBehaviour(HttpUser):
             for id_item in self.response_id_data["resp"]:
 
                 self.client.post(url=sub_url + id_item, headers=header)
-        end = time.time()
-        total = end - start
+        # end = time.time()
+        # total = end - start
 
     def get_id_data(self):
         self.response_id_data = extract_ids()
