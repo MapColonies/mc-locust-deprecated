@@ -5,8 +5,6 @@ import json
 import xmltodict
 from locust import TaskSet, task, events
 from requests import Response
-
-
 # from tools import GeneralTools
 from get_ids import post_request, url_get_ids, get_id_body, header
 

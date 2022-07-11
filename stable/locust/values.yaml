@@ -27,6 +27,7 @@ loadtest:
   # loadtest.mount_external_secret -- additional mount used in the load test for both master and workers, stored in secrets created outside this chart. Each secret contains a list of values in it. Usage: `mountPath: yourMountLocation, files: { secret_name: [AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY] }`
   mount_external_secret: {}
   secret_name_api_key_locust: 'automation-secret'
+  sub_url_secret: 'automation-sub-url'
     # mountPath: yourMountLocation
     # files:
       # secret_name: var
@@ -46,7 +47,7 @@ image:
 
 service:
   type: ClusterIP
-#  type: NodePort
+  # type: NodePort
 
   annotations: {}
   extraLabels: {}
@@ -115,7 +116,7 @@ worker:
   # worker.envs_include_default -- Whether to include default environment variables
   envs_include_default: true
   # worker.environment -- environment variables for the workers
-  environment: {}
+  environment: {SUB_URL_FOR_IDS: "https://www.google.com"}
   # worker.args -- Any extra command args for the workers
   args: []
 #  command:

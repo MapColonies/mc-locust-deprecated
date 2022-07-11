@@ -99,6 +99,8 @@ spec:
               secretKeyRef:
                 name: {{ .Values.loadtest.secret_name_api_key_locust }}
                 key: x-api-key
+                # name: {{ .Values.loadtest.sub_url_secret }}
+                # key: sub-url
 {{- end }}
 {{- range $key, $value := .Values.loadtest.environment }}
           - name: {{ $key }}

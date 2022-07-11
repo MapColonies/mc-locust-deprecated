@@ -29,9 +29,10 @@ class UserBehaviour(HttpUser):
     def index(self):
         start = time.time()
         print("--- running Task")
-        sub_url = "pycsw/?service=CSW&request" \
-            "=GetRecordById&typenames=mc:MCRasterRecord&ElementSetName=full&resultType=results&outputSchema=http" \
-            "://schema.mapcolonies.com/raster&version=2.0.2&id="
+        # sub_url = "pycsw/?service=CSW&request" \
+        #     "=GetRecordById&typenames=mc:MCRasterRecord&ElementSetName=full&resultType=results&outputSchema=http" \
+        #     "://schema.mapcolonies.com/raster&version=2.0.2&id="
+        sub_url = os.environ['SUB_URL']
         if self.response_id_data["state"]:
             for id_item in self.response_id_data["resp"]:
 
@@ -45,3 +46,5 @@ class UserBehaviour(HttpUser):
 
     def on_start(self):
         self.extract_ids()
+
+    

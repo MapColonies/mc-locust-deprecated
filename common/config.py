@@ -33,3 +33,5 @@ PARAMS = {'service': 'CSW',
           'outputSchema': 'http://schema.mapcolonies.com/raster',
           'version': '2.0.2',
           'id': '3fc674cd-7b77-40ac-8fa3-96b6b4c77f3b'}
+
+SUB_URL = os.environ.get('SUB_URL_FOR_IDS')

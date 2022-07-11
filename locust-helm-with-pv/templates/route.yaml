@@ -2,6 +2,7 @@
 {{- $chartName := include "locust-server-boilerplate.name" . -}}
 {{- $cloudProviderFlavor := include "locust-server-boilerplate.cloudProviderFlavor" . -}}
 {{- if and (and (.Values.enabled) (eq $cloudProviderFlavor "openshift")) (.Values.route.enabled) -}}
+# apiVersion: v1
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
