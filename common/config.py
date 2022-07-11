@@ -5,11 +5,11 @@ import os
 requests_file = "wmts_csv_user.csv"
 
 # test settings
-layer = "Artzi_Full_GPKG"
-gridName = "epsg4326gridUL"
+layer = os.environ.get("layer")
+gridName = os.environ.get("gridName")
 version = "1.0.0"
-projection = "epsg4326gridUL"
-image_format = ".png"
+projection = os.environ.get("projection")
+image_format = os.environ.get("imageType")
 users = 25
 
 runTimeMin = 90
@@ -19,7 +19,7 @@ delayBetweencapabilitiesRequests = 0  # ms
 zMin = 0
 zMax = 21
 """ connection settings """
-layer_type = "wmts"
+layer_type = os.environ.get("layer_type")
 path_builder = f"{layer_type}/{layer}/{projection}/TileMatrix/TileCol/TileRow{image_format}"
 
 HOST = "https://pycsw-qa-pycsw-route-raster.apps.v0h0bdx6.eastus.aroapp.io/"
