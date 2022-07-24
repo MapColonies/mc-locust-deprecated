@@ -1,5 +1,5 @@
-from locust import HttpUser , task , constant_throughput
-from locust_plugins import StopUser 
+from locust import HttpUser, task, constant_throughput
+from locust_plugins import StopUser
 from locust_plugins.csvreader import CSVReader
 import common.config as cfg
 import time
@@ -7,35 +7,24 @@ import logging
 
 logging.error("Reading CSV file")
 ssn_reader = CSVReader("csv_data/data/wmts_csv_user.csv")
+
+
 class MyUser(HttpUser):
-    wait_time = constant_throughput(1)
+    # ToDo: Add later switch case for timer type
+    if cfg.CONSTANT_THROUGHPUT == 1:
+        wait_time = constant_throughput(1)
+
     @task(1)
     def index(self):
-        # start = time.time()
-        # for i in range(0, 25):
         points = next(ssn_reader)
-        
-        # points = next(ssn_reader)
-        # print(points)
-        # points = next(ssn_reader)
-        # print(points)
-        # points = next(ssn_reader)
-        # print(points)
-        # points = next(ssn_reader)
-        # print(points)
-        # end = time.time()
-        # total = end - start
-        # print("One Task Finished {total}".format(total=total))
-        # self.client.get("/")
-        # raise StopUser("Stop User")
         # self.client.get(
-        
+
         #     f"/wmts/2022_04_04T12_01_48Z_MAS_6_ORT_247557-Orthophoto/newGrids/1/0/1.png",
         #     headers=cfg.default_headers)
         # print(
         #     f"/wmts/2022_04_04T12_01_48Z_MAS_6_ORT_247557-Orthophoto/newGrids/1/0/1.png")
-        self.client.get(f"/{cfg.layer_type}/{cfg.layer}/{cfg.gridName}/{points[0]}/{points[1]}/{points[2]}{cfg.image_format}",
-            headers=cfg.REQUEST_HEADER)
+        self.client.get(f"/{cfg.LAYER_TYPE}/{cfg.LAYER}/{cfg.GRIDNAME}/{points[0]}/{points[1]}/{points[2]}{cfg.IMAGE_FORMAT}",
+                        headers=cfg.REQUEST_HEADER)
         # print(
         #     f"/{cfg.layer_type}/{cfg.layer}/{cfg.projection}/{points[0]}/{points[1]}/{points[2]}{cfg.image_format}")
         # print(customer)
