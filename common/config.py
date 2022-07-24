@@ -1,5 +1,6 @@
 import os
 
+
 # Files Parameters
 WMTS_CSV_PATH = os.environ.get("csv_path", "csv_data/data/wmts_csv_user.csv")
 
@@ -15,6 +16,11 @@ IMAGE_FORMAT = os.environ.get("imageType", ".png")
 PYCSW_RECORD_ID = os.environ.get('pycsw_record_id', "mc:id")
 PYCSW_COUNTRY_NAME = os.environ.get('pycsw_country_name', "mc:region")
 PYCSW_POLYGON = os.environ.get('pycsw_polygon', "mc:layerPolygonParts")
+PYCSW_HOST = os.environ.get('pycsw_host', "http://localhost:8000/")
+FIRST_TASK_WEIGHT = os.environ.get('first_task_weight', 1)
+SECOND_TASK_WEIGHT = os.environ.get('second_task_weight', 2)
+THIRD_TASK_WEIGHT = os.environ.get('third_task_weight', 3)
+FOURTH_TASK_WEIGHT = os.environ.get('fourth_task_weight', 4)
 
 # Locust Settings (Parameters)
 PORT = os.environ.get("port", "80")
