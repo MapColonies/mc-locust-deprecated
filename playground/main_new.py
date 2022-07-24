@@ -9,3 +9,5 @@ class ApiUser(HttpUser):
     wait_time = between(1, 5)
     
     host = os.getenv('TARGET_HOST', 'https://target-host.localhost')
+    
+    

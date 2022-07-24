@@ -27,7 +27,7 @@ class MyUser(FastHttpUser):
 
 
 from locust import HttpUser, task, between
-from tester.ew.op import choose_random_page
+from playground.temp_lib.op import choose_random_page
 import os
 import glob
 from csv_data.manipulation import do_something

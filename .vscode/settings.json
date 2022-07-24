@@ -1,3 +1,22 @@
 {
-    "python.linting.enabled": true
+    "python.linting.enabled": true,
+    "cSpell.words": [
+        "acrarolibotnonprod",
+        "Artzi",
+        "azurecr",
+        "configmap",
+        "configmaps",
+        "fullname",
+        "GPKG",
+        "kubernetes",
+        "Lateron",
+        "loadtest",
+        "locustfile",
+        "openshift",
+        "pycsw",
+        "roie",
+        "shaziri",
+        "tolerations",
+        "wmts"
+    ]
 }

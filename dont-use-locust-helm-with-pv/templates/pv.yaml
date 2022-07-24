@@ -1,0 +1,14 @@
+{{- if and (eq (upper .Values.rasterCommon.storage.tilesStorageProvider) "FS") .Values.storage.internalPvc.create -}}
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ .Values.storage.internalPv.name }}
+spec:
+  storageClassName: hostpath
+  capacity:
+    storage:  10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: {{ .Values.storage.internalPv.directory }}
+{{- end -}}

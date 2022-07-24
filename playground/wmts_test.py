@@ -1,5 +1,5 @@
 from locust import FastHttpUser, task, between
-from tester.ew.op import choose_random_page
+from playground.temp_lib.op import choose_random_page
 import common.config as cfg
 import os
 from csv_data.manipulation import do_something

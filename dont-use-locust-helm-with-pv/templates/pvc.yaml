@@ -1,0 +1,17 @@
+{{- if and (eq (upper .Values.rasterCommon.storage.tilesStorageProvider) "FS") .Values.storage.internalPvc.create -}}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Values.rasterCommon.storage.fs.ingestionSourcePvc.name }}
+  labels:
+    app: "automation-locust"
+    component: "automation-locust"
+    environment: "development"
+spec:
+  storageClassName: hostpath
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+{{- end -}}

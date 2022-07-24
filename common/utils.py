@@ -1,1 +1,24 @@
 import os
+import config as cfg
+
+
+def xml_builder_job():
+    # Return XML string after building it from the template.
+    #ToDO: Shay change all relevant values
+    XML_BODY = f""" 
+    <?xml version="1.0" encoding="UTF-8"?>
+<csw:GetRecords xmlns:csw="http://www.opengis.net/cat/csw/2.0.2" service="CSW" maxRecords="1"  startPosition="1"  outputSchema="http://schema.mapcolonies.com/raster" version="2.0.2" xmlns:mc="http://schema.mapcolonies.com/raster" >
+  <csw:Query typeNames={cfg.HOST}>
+   <csw:ElementSetName>brief</csw:ElementSetName>
+    <csw:Constraint version="1.1.0">
+      <Filter xmlns="http://www.opengis.net/ogc">
+        <PropertyIsLike wildCard="%" singleChar="_" escapeChar="\\">
+          <PropertyName>mc:id</PropertyName>
+          <Literal>d53a03e3-650b-4f4e-9047-071667741c08</Literal>
+        </PropertyIsLike>
+      </Filter>
+    </csw:Constraint>
+  </csw:Query>
+</csw:GetRecords>
+"""
+    return XML_BODY

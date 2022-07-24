@@ -1,6 +1,6 @@
 import os
 
-from get_ids import  header, extract_ids
+from playground.get_ids import  header, extract_ids
 import time
 from locust import HttpUser, task, TaskSet
 

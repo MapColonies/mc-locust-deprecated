@@ -7,7 +7,7 @@ from locust import HttpUser, TaskSet, task, events
 from requests import Response
 from common.config import SUB_URL
 # from tools import GeneralTools
-from tests.get_ids import post_request, url_get_ids, get_id_body, header
+from playground.get_ids import post_request, url_get_ids, get_id_body, header
 
 
 @events.init.add_listener
