@@ -8,6 +8,7 @@ from locust import constant_throughput
 
 runner_url_list = do_something()
 # ssn_reader = CSVReader("csv_data/data/wmts_csv_user.csv")
+#ToDo: Change the CSVReader from Constant to config name
 ssn_reader = CSVReader("csv_data/data/wmts_csv_user.csv")
 
 

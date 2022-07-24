@@ -1,13 +1,10 @@
-# from csv_data.manipulation import do_something
-from locust import HttpUser, task, between
+from locust import HttpUser, User, constant, task, tag 
 
 
-class QuickstartUser(HttpUser):
-    wait_time = between(1, 2.5)
+class MyUser(HttpUser):
+    wait_time = constant(1)
 
+    @tag('tag1')
     @task
-    def hello_world(self):
-        print("hello from task")
-        # do_something()
-#
-
+    def task1(self):
+        self.client.get('GET', '/calendar')

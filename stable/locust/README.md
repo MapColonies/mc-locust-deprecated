@@ -133,9 +133,3 @@ helm install my-release deliveryhero/locust -f values.yaml
 | worker.restartPolicy | string | `"Always"` | worker pod's restartPolicy. Can be Always, OnFailure, or Never. |
 | worker.serviceAccountAnnotations | object | `{}` |  |
 | worker.strategy.type | string | `"RollingUpdate"` |  |
-
-## Maintainers
-
-| Name | Email | Url |
-| ---- | ------ | --- |
-| max-rocket-internet | no-reply@deliveryhero.com |  |
