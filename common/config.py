@@ -40,7 +40,7 @@ PYCSW_POLYGON_VALUE = os.environ.get('mc_polygon_value', "")
 PORT = os.environ.get("port", "80")
 HOST = os.environ.get(
     "HOST", "https://pycsw-qa-pycsw-route-raster.apps.v0h0bdx6.eastus.aroapp.io/")
-REQUEST_HEADER = {'X-API-KEY': os.environ.get('SECRET_VALUE_API')}
+REQUEST_HEADER = {'X-API-KEY': os.environ.get('SECRET_VALUE_API'),'Content-Type': 'text/text; charset=utf-8'}
 USERS = os.environ.get("users", "15")
 SUB_URL = os.environ.get('sub_url_for_pycsw')
 CONSTANT_THROUGHPUT = os.environ.get('constant_throughput', 1)
