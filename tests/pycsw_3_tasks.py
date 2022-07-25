@@ -47,7 +47,7 @@ POLYGON_XML = rf"""<?xml version="1.0" encoding="UTF-8"?>
 </csw:Query>
 
 </csw:GetRecords>
-"""
+""".encode('utf-8')
 
 
 ID_RECORD_XML = rf"""<?xml version="1.0" encoding="UTF-8"?>
@@ -114,9 +114,9 @@ class SizingUser(HttpUser):
 
     @task(1)
     def get_records_by_polygon(self):
-        r1 = self.client.post('/', data=POLYGON_XML, headers=cfg.REQUEST_HEADER, encoding='UTF-8')
-        print("Here is value : " + MC_POLYGON_VALUE)
-        print("Here is key :" + MC_POLYGON_PROPERTY)
+        r1 = self.client.post('/', data=POLYGON_XML.decode('utf-8'), headers=cfg.REQUEST_HEADER)
+        # print("Here is value : " + MC_POLYGON_VALUE)
+        # print("Here is key :" + MC_POLYGON_PROPERTY)
         # print(POLYGON_XML.encode('utf-8'))
         
         print(r1.text)
