@@ -2,7 +2,7 @@ loadtest:
   # loadtest.name -- a name used for resources and settings in this load test
   name: locust-loadtest
   # loadtest.locust_locustfile -- the name of the locustfile
-  locust_locustfile: mainer.py
+  locust_locustfile: pycsw_3_tasks.py
   # loadtest.locust_locustfile_path -- the path of the locustfile (without trailing backslash)
   locust_locustfile_path: "/mnt/locust/tests"
   # loadtest.locust_locustfile_configmap -- name of a configmap containing your locustfile (default uses the example locustfile)
@@ -41,7 +41,7 @@ loadtest:
 
 image:
   repository: acrarolibotnonprod.azurecr.io/locust-automation
-  tag: 0.6.1
+  tag: 0.6.2
   pullPolicy: IfNotPresent
 
 service:
@@ -53,7 +53,7 @@ service:
 
 master:
   # master.image -- A custom docker image including tag
-  image: "acrarolibotnonprod.azurecr.io/locust-automation:0.6.1"
+  image: "acrarolibotnonprod.azurecr.io/locust-automation:0.6.2"
   # master.logLevel -- Log level. Can be INFO or DEBUG
   logLevel: INFO
   # master.resources -- resources for the locust master to add
@@ -92,7 +92,7 @@ master:
 
 worker:
   # worker.image -- A custom docker image including tag
-  image: "acrarolibotnonprod.azurecr.io/locust-automation:0.6.1"
+  image: "acrarolibotnonprod.azurecr.io/locust-automation:0.6.2"
   # worker.logLevel -- Log level. Can be INFO or DEBUG
   logLevel: INFO
   replicas: 3
