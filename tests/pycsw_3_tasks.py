@@ -1,3 +1,4 @@
+from bson import encode
 from locust import user, task, HttpUser
 import common.config as cfg
 
@@ -113,11 +114,12 @@ class SizingUser(HttpUser):
 
     @task(1)
     def get_records_by_polygon(self):
-        r1 = self.client.post('/', data=POLYGON_XML.encode('utf-8'), headers=cfg.REQUEST_HEADER)
+        r1 = self.client.post('/', data=POLYGON_XML, headers=cfg.REQUEST_HEADER, encoding='UTF-8')
         print("Here is value : " + MC_POLYGON_VALUE)
         print("Here is key :" + MC_POLYGON_PROPERTY)
-        print(POLYGON_XML.encode('utf-8'))
-        # print(r1.text)
+        # print(POLYGON_XML.encode('utf-8'))
+        
+        print(r1.text)
      
      
     # @task(2)
