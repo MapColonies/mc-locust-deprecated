@@ -118,16 +118,16 @@ class SizingUser(HttpUser):
         
      
      
-    @task(2)
+    @task(1)
     def get_records_by_id(self):
         r2 = self.client.post('/', data=ID_RECORD_XML.encode('utf-8'), headers=cfg.REQUEST_HEADER)
         # print(r2.text)
 
 
-    @task(3)
+    @task(1)
     def get_records_by_region(self):
         r3 = self.client.post('/', data=REGION_RECORD_XML.encode('utf-8'), headers=cfg.REQUEST_HEADER)
-        print(r3.text)     
+        # print(r3.text)     
 
     # @task
     # def get_records_by_bbox(self):
