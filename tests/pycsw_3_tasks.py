@@ -115,7 +115,7 @@ class SizingUser(HttpUser):
     @task(1)
     def get_records_by_polygon(self):
         r1 = self.client.post('/', data=POLYGON_XML.encode('utf-8'), headers=cfg.REQUEST_HEADER)
-        # print(r1.text)
+        print(r1.text)
      
      
     @task(2)
