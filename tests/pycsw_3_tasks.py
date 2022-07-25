@@ -114,8 +114,10 @@ class SizingUser(HttpUser):
     @task(1)
     def get_records_by_polygon(self):
         r1 = self.client.post('/', data=POLYGON_XML.encode('utf-8'), headers=cfg.REQUEST_HEADER)
-        print("Here is : " + MC_POLYGON_VALUE)
-        print(r1.text)
+        print("Here is value : " + MC_POLYGON_VALUE)
+        print("Here is key :" + MC_POLYGON_PROPERTY)
+        print("here is xml: " + POLYGON_XML.encode('utf-8'))
+        # print(r1.text)
      
      
     # @task(2)
