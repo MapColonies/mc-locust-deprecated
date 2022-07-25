@@ -1,13 +1,9 @@
-# ToDo: Shay
-# ToDo: Danny
-
-import xmltodict
 from common.config import REQUEST_HEADER
 from locust import HttpUser, TaskSet, task, between
 
 
 # ToDo: Add value to the body
-ms_polygon_body = r"""<?xml version="1.0" encoding="UTF-8"?>
+POLYGON_XML = r"""<?xml version="1.0" encoding="UTF-8"?>
 
 <csw:GetRecords xmlns:csw="http://www.opengis.net/cat/csw/2.0.2" service="CSW" maxRecords="1" startPosition="1" outputSchema="http://schema.mapcolonies.com/raster" version="2.0.2" xmlns:mc="http://schema.mapcolonies.com/raster" >
 
@@ -36,27 +32,13 @@ ms_polygon_body = r"""<?xml version="1.0" encoding="UTF-8"?>
 </csw:GetRecords>
 """
 
-
-
 class WebsiteUser(HttpUser):
-    wait_time = between(5, 9)
+    # wait_time = between(5, 9)
 
     @task(1)
     def by_polygon(self):
-        # ssn_reader
-        # start = time.time()
-        print("--- running Task")
-        print(REQUEST_HEADER)
-        # print(xmltodict.parse(ms_id_body))
-        response = self.client.post(url="/", data=ms_polygon_body,
+        response = self.client.post(url="/", data=POLYGON_XML.encode('utf-8'),
                                     headers=REQUEST_HEADER)
 
         print(response.text)
-
-        # self.client.post(headers=header, xml=ms_id_body)
-
-        # end = time.time()
-        # total = end - start
-        print('First task..')
-
 

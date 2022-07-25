@@ -16,7 +16,7 @@ loadtest:
   # loadtest.pip_packages -- a list of extra python pip packages to install
   pip_packages: []
   # loadtest.environment -- environment variables used in the load test for both master and workers
-  environment: {measure_time: false, version: "1.0.0", projection: "roie",csv_path: "csv_data/data/wmts_shaziri.csv", gridName: "newGrids", imageType: ".png", layer: "Artzi_Full_GPKG", users: 15, port: 8080, layer_type: "wmts", test_to_run: "Lateron" ,sub_url_for_pycsw: "https://catalog-qa-raster-catalog-pycsw-route-raster.apps.v0h0bdx6.eastus.aroapp.io/"}    # VAR: VALUE
+  environment: {measure_time: false,mc_polygon_value: "default_polygon", version: "1.0.0", projection: "roie",csv_path: "csv_data/data/wmts_shaziri.csv", gridName: "newGrids", imageType: ".png", layer: "Artzi_Full_GPKG", users: 15, port: 8080, layer_type: "wmts", test_to_run: "Lateron" ,sub_url_for_pycsw: "https://catalog-qa-raster-catalog-pycsw-route-raster.apps.v0h0bdx6.eastus.aroapp.io/"}    # VAR: VALUE
   # loadtest.environment_secret -- environment variables used in the load test for both master and workers, stored as secrets
   environment_secret: 'replace_me'
     # VAR: VALUE
