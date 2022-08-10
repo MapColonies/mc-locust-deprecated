@@ -6,7 +6,7 @@ import time
 import logging
 
 logging.error("Reading CSV file")
-ssn_reader = CSVReader("csv_data/data/wmts_csv_user.csv")
+ssn_reader = CSVReader("csv_data/data/wmts_shaziri.csv")
 
 
 class MyUser(HttpUser):
