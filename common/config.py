@@ -43,8 +43,11 @@ HOST = os.environ.get(
 REQUEST_HEADER = {'X-API-KEY': os.environ.get('SECRET_VALUE_API'),'Content-Type': 'text/text; charset=utf-8'}
 USERS = os.environ.get("users", "15")
 SUB_URL = os.environ.get('sub_url_for_pycsw')
-CONSTANT_THROUGHPUT = os.environ.get('constant_throughput', 1)
-
+WAIT_FUNCTION = os.environ.get('wait_function', 5) # 1 = constant, 2 = constant_throughput, 3 = between, 4 = constant_pacing
+MIN_WAIT = os.environ.get('min_wait', 1)
+MAX_WAIT = os.environ.get('max_wait', 1)
+WAIT_TIME = os.environ.get('wait_time', 1)
+CA_PATH = os.environ.get("ca_path", "certs/cacert.pem")
 
 # Request Parameters
 PARAMS = {'service': 'CSW',

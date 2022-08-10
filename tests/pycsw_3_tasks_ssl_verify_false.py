@@ -129,12 +129,13 @@ class SizingUser(HttpUser):
 
     # wait_time = constant_throughput(1)
     # wait_time = between(cfg.MIN_WAIT, cfg.MAX_WAIT)
-    # wait_time = constant_pacing(1) # Works best
+    # wait_time = constant_pacing(1) # Works bes
 
+        
     @task(1)
     def get_records_by_polygon(self):
         # r1 = self.client.post('/', data=POLYGON_XML.encode('UTF-8'), headers=cfg.REQUEST_HEADER)
-        self.client.get('/', cert=)
+        self.client.get('/', verify=False)
 
     # @task(1)
     # def get_records_by_id(self):
