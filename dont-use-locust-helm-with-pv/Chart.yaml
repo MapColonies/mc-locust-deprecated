@@ -1,6 +1,0 @@
-apiVersion: v2
-name: locust-server-boilerplate
-description: A Helm chart for locust-server-boilerplate service
-type: application
-version: 1.0.0
-appVersion: 1.0.0
