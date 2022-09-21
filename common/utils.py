@@ -1,10 +1,15 @@
-import os
+import js2py
 import config as cfg
+
+
+def execute_js_code(js_code):
+    js = str(js_code).replace("document.write", "return ")
+    return js2py.eval_js(js)
 
 
 def xml_builder_job():
     # Return XML string after building it from the template.
-    #ToDO: Shay change all relevant values
+    # ToDO: Shay change all relevant values
     XML_BODY = f""" 
     <?xml version="1.0" encoding="UTF-8"?>
 <csw:GetRecords xmlns:csw="http://www.opengis.net/cat/csw/2.0.2" service="CSW" maxRecords="1"  startPosition="1"  outputSchema="http://schema.mapcolonies.com/raster" version="2.0.2" xmlns:mc="http://schema.mapcolonies.com/raster" >

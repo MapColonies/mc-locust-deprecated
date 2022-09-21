@@ -1,5 +1,5 @@
 from math import floor
-import typing
+from typing import Optional
 
 import config
 
@@ -9,7 +9,7 @@ import config
 # ToDo: Zoom level convertor -> from deg (check in DB if its only deg) to zoom_level(0-20 dict i sent you in slack) v
 
 
-def zoom_level_convertor(deg_value: float) -> int:
+def zoom_level_convertor(deg_value: float) -> Optional[int]:
     """
 
     :param deg_value: float number that presents the resolution deg
@@ -32,7 +32,7 @@ class Range:
 
 
 class MapproxyLayer:
-    def __init__(self, layer_id: str, zoom: int, product_bbox: list):
+    def __init__(self, layer_id: str, zoom: float, product_bbox: list):
         self.layer_id = layer_id
         self.bbox = product_bbox
         self.zoom = zoom
@@ -55,13 +55,14 @@ class MapproxyLayer:
         return self.bbox[3]
 
     @property
-    def zoom_level(self) -> int:
+    def zoom_level(self) -> float:
         return self.zoom
 
     def get_x_tile_ranges(self) -> Range:
+        x = floor((self.min_x_deg + 180) / self.deg_per_tile)
         min_tile_x = floor((self.min_x_deg + 180) / self.deg_per_tile, 1)
         max_tile_x = floor((self.max_x_deg + 180) / self.deg_per_tile, 1) + 1
-        return Range(min_tile_x, max_tile_x)
+        return Range(min_tile_x, max_tile_x), x
 
     def get_y_tile_ranges(self) -> Range:
         min_tile_y = pow(2, self.zoom_level) - \
@@ -70,8 +71,11 @@ class MapproxyLayer:
                      floor((self.min_y_deg + 90) / self.deg_per_tile, 1)
         return Range(min_tile_y, max_tile_y)
 
-    def get_zoom_range(self) -> Range:
+    def get_zoom_range(self) -> Optional[Range]:
         zoom_level = zoom_level_convertor(deg_value=self.zoom)
         if zoom_level:
             return Range(0, zoom_level)
+        print(zoom_level)
         return None
+
+
