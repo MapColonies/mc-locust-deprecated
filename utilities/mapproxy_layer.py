@@ -1,5 +1,5 @@
 from math import floor
-import typing
+from typing import float, int, Optional, str
 
 import config
 
@@ -9,7 +9,7 @@ import config
 # ToDo: Zoom level convertor -> from deg (check in DB if its only deg) to zoom_level(0-20 dict i sent you in slack) v
 
 
-def zoom_level_convertor(deg_value: float) -> int:
+def zoom_level_convertor(deg_value: float) -> Optional[int]:
     """
 
     :param deg_value: float number that presents the resolution deg
