@@ -1,4 +1,5 @@
 import os
+from typing import Iterable, int
 import common.config as cfg
 
 
@@ -28,11 +29,11 @@ class WMTSIterator():
 
     "WMTSIterator - with range"
 
-    def __init__(self, range_):
+    def __init__(self, range_: range):
         self.points = iter(range_)
         self.range = range_
 
-    def __next__(self):
+    def __next__(self) -> Iterable[int]:
         try:
             return next(self.points)
         except StopIteration:
