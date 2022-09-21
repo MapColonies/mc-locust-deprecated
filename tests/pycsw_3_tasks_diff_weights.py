@@ -109,25 +109,25 @@ REGION_RECORD_XML = rf"""<?xml version="1.0" encoding="UTF-8"?>
 </csw:GetRecords>
 """
 
+
 class SizingUser(HttpUser):
     # wait_time = constant(1)
 
     @task(1)
     def get_records_by_polygon(self):
-        r1 = self.client.post('/', data=POLYGON_XML.encode('UTF-8'), headers=cfg.REQUEST_HEADER)
-        
-     
-     
+        r1 = self.client.post(
+            '/', data=POLYGON_XML.encode('UTF-8'), headers=cfg.REQUEST_HEADER)
+
     @task(2)
     def get_records_by_id(self):
-        r2 = self.client.post('/', data=ID_RECORD_XML.encode('UTF-8'), headers=cfg.REQUEST_HEADER)
+        r2 = self.client.post(
+            '/', data=ID_RECORD_XML.encode('UTF-8'), headers=cfg.REQUEST_HEADER)
         # print(r2.text)
-
 
     @task(3)
     def get_records_by_region(self):
-        r3 = self.client.post('/', data=REGION_RECORD_XML.encode('UTF-8'), headers=cfg.REQUEST_HEADER)
-          
+        r3 = self.client.post(
+            '/', data=REGION_RECORD_XML.encode('UTF-8'), headers=cfg.REQUEST_HEADER)
 
     # @task
     # def get_records_by_bbox(self):

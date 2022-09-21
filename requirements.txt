@@ -1,4 +1,4 @@
-locust~=2.8.6
+locust
 pandas~=1.4.2
 locust_plugins
 requests~=2.27.1

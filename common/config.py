@@ -47,7 +47,9 @@ WAIT_FUNCTION = os.environ.get('wait_function', 4) # 1 = constant, 2 = constant_
 MIN_WAIT = os.environ.get('min_wait', 1)
 MAX_WAIT = os.environ.get('max_wait', 1)
 WAIT_TIME = os.environ.get('wait_time', 1)
-CA_PATH = os.environ.get("ca_path", "certs/cacert.pem")
+CA_PATH = os.environ.get("ca_path", "/usr/local/share/ca-certificates/ca.crt")
+CERT_PATH = os.environ.get("cert_path", "/usr/local/share/ca-certificates/client.crt")
+KEY_PATH = os.environ.get("key_path", "/usr/local/share/ca-certificates/client.key")
 
 # Request Parameters
 PARAMS = {'service': 'CSW',
@@ -62,9 +64,4 @@ PARAMS = {'service': 'CSW',
 """ connection settings """
 PATH_BUILDER = f"{LAYER_TYPE}/{LAYER}/{PROJECTION}/TileMatrix/TileCol/TileRow{IMAGE_FORMAT}"
 
-# runTimeMin = 90
-# delayBetweenTileRequests = 100  # ms
-# delayBetweencapabilitiesRequests = 0  # ms
-# zMin = 0
-# zMax = 21
 

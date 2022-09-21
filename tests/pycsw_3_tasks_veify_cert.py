@@ -127,20 +127,23 @@ class SizingUser(HttpUser):
     else:
         print("Invalid wait function")
 
+    # wait_time = constant_throughput(1)
+    # wait_time = between(cfg.MIN_WAIT, cfg.MAX_WAIT)
+    # wait_time = constant_pacing(1) # Works bes
+
+        
     @task(1)
     def get_records_by_polygon(self):
-        r1 = self.client.post(
-            '/', data=POLYGON_XML.encode('UTF-8'), headers=cfg.REQUEST_HEADER, verify=False)
+        r1 = self.client.post('/', data=POLYGON_XML.encode('UTF-8'), headers=cfg.REQUEST_HEADER, cert=cfg.CERT_PATH)
+        
 
     @task(1)
     def get_records_by_id(self):
-        r2 = self.client.post('/', data=ID_RECORD_XML.encode('utf-8'),
-                              headers=cfg.REQUEST_HEADER, verify=False)
+        r2 = self.client.post('/', data=ID_RECORD_XML.encode('utf-8'), headers=cfg.REQUEST_HEADER, cert=cfg.CERT_PATH)
 
     @task(1)
     def get_records_by_region(self):
-        r3 = self.client.post('/', data=REGION_RECORD_XML.encode('utf-8'),
-                              headers=cfg.REQUEST_HEADER, verify=False)
+        r3 = self.client.post('/', data=REGION_RECORD_XML.encode('utf-8'), headers=cfg.REQUEST_HEADER, cert=cfg.CERT_PATH)
 
     # @task
     # def get_records_by_bbox(self):
