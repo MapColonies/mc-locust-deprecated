@@ -10,7 +10,9 @@ from locust import TaskSet
 import time
 
 
-ssn_reader = [WMTSIterator(1, 5+1), WMTSIterator(5, 10), WMTSIterator(10, 15)]
+# ssn_reader = [WMTSIterator(1, 5+1), WMTSIterator(5, 10), WMTSIterator(10, 15)]
+
+ssn_reader = WMTSIterator(range(0,5))
 
 
 now = datetime.now()
@@ -46,10 +48,11 @@ class MyTaskSet(TaskSet):
     @task(1)
     def fast(self):
         self.client.get("/", name="fast_check")
-        points_1 = next(ssn_reader[0])
-        points_2 = next(ssn_reader[1])
-        points_3 = next(ssn_reader[2])
-        print(f'{points_1} ,{points_2}, {points_3}')
+        points_1 = next(ssn_reader)
+        print(points_1)
+        # points_2 = next(ssn_reader[1])
+        # points_3 = next(ssn_reader[2])
+        # print(f'{points_1} ,{points_2}, {points_3}')
 
         # print(next(iter_count))
 

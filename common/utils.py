@@ -26,14 +26,30 @@ def xml_builder_job():
 
 class WMTSIterator():
 
-    def __init__(self, start_index, end_index):
-        self.start = start_index
-        self.end = end_index
-        self.points = iter(range(start_index, end_index))
+    "WMTSIterator - with range"
+
+    def __init__(self, range_):
+        self.points = iter(range_)
+        self.range = range_
 
     def __next__(self):
         try:
             return next(self.points)
         except StopIteration:
-            self.points = iter(range(self.start, self.end))
+            self.points = iter(self.range)
             return next(self.points)
+
+
+# class WMTSIterator():
+"WMTSIterator - without range"
+#     def __init__(self, start_index, end_index):
+#         self.start = start_index
+#         self.end = end_index
+#         self.points = iter(range(start_index, end_index))
+
+#     def __next__(self):
+#         try:
+#             return next(self.points)
+#         except StopIteration:
+#             self.points = iter(range(self.start, self.end))
+#             return next(self.points)
