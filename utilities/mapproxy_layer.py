@@ -28,7 +28,7 @@ class Range:
         self.range = self.get_range_value()
 
     def get_range_value(self):
-        return (self.min_val, self.max_val)
+        return self.min_val, self.max_val
 
 
 class MapproxyLayer:
@@ -59,23 +59,19 @@ class MapproxyLayer:
         return self.zoom
 
     def get_x_tile_ranges(self) -> Range:
-        x = floor((self.min_x_deg + 180) / self.deg_per_tile)
-        min_tile_x = floor((self.min_x_deg + 180) / self.deg_per_tile, 1)
-        max_tile_x = floor((self.max_x_deg + 180) / self.deg_per_tile, 1) + 1
-        return Range(min_tile_x, max_tile_x), x
+        min_tile_x = floor((self.min_x_deg + 180) / self.deg_per_tile)
+        max_tile_x = floor((self.max_x_deg + 180) / self.deg_per_tile) + 1
+        return Range(min_tile_x, max_tile_x)
 
     def get_y_tile_ranges(self) -> Range:
         min_tile_y = pow(2, self.zoom_level) - \
-                     floor((self.max_y_deg + 90) / self.deg_per_tile, 1) - 1
+                     floor((self.max_y_deg + 90) / self.deg_per_tile) - 1
         max_tile_y = pow(2, self.zoom_level) - \
-                     floor((self.min_y_deg + 90) / self.deg_per_tile, 1)
+                     floor((self.min_y_deg + 90) / self.deg_per_tile)
         return Range(min_tile_y, max_tile_y)
 
     def get_zoom_range(self) -> Optional[Range]:
         zoom_level = zoom_level_convertor(deg_value=self.zoom)
         if zoom_level:
             return Range(0, zoom_level)
-        print(zoom_level)
         return None
-
-
