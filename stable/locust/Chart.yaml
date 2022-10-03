@@ -5,7 +5,6 @@ appVersion: 2.1.0
 home: https://github.com/locustio/locust
 icon: https://locust.io/static/img/logo.png
 maintainers:
-- name: dimitry sigalovich  
-  email: danisegal4@gmail.com
+  - name: dimitry sigalovich
+    email: danisegal4@gmail.com
 description: "locust framework for k8s"
-  

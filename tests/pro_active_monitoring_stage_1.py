@@ -1,18 +1,22 @@
-from asyncio import tasks
-from typing import Iterable, Iterator
-from locust import HttpUser, constant, User
-from locust import events, task
-import sys
-from datetime import datetime
-from datetime import date
-from common.utils import WMTSIterator
-from locust import TaskSet
 import time
+from datetime import date
+from datetime import datetime
+from typing import Iterable
+from typing import Iterator
+
+from locust import constant
+from locust import events
+from locust import HttpUser
+from locust import task
+from locust import TaskSet
+from locust import User
+
+from common.utils import WMTSIterator
 
 
 # ssn_reader = [WMTSIterator(1, 5+1), WMTSIterator(5, 10), WMTSIterator(10, 15)]
 
-ssn_reader = WMTSIterator(range(0,5))
+ssn_reader = WMTSIterator(range(0, 5))
 
 
 now = datetime.now()
@@ -25,16 +29,14 @@ now = datetime.now()
 def on_test_start(environment, **kwargs):
     current_time = now.strftime("%H:%M:%S")
     today = date.today()
-    print(
-        f"Test Started \nCurrent Time : {current_time} \nToday's date: {today} ")
+    print(f"Test Started \nCurrent Time : {current_time} \nToday's date: {today} ")
 
 
 @events.test_stop.add_listener
 def on_test_stop(environment, **kwargs):
     current_time = now.strftime("%H:%M:%S")
     today = date.today()
-    print(
-        f"Test Ended \nCurrent Time : {current_time} \nToday's date: {today} ")
+    print(f"Test Ended \nCurrent Time : {current_time} \nToday's date: {today} ")
 
 
 # class ProActiveUser(HttpUser):
@@ -43,6 +45,7 @@ def on_test_stop(environment, **kwargs):
 #     @task(1)
 #     def index(self):
 #         self.client.get('/')
+
 
 class MyTaskSet(TaskSet):
     @task(1)

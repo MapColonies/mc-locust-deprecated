@@ -16,20 +16,38 @@ loadtest:
   # loadtest.pip_packages -- a list of extra python pip packages to install
   pip_packages: []
   # loadtest.environment -- environment variables used in the load test for both master and workers
-  environment: {measure_time: false, mc_region_value : "ישראל, ירדן", mc_polygon_value: '{"bbox":[34.8468438649828,32.0466327470143,34.8804418550117,32.0689996810298],"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[34.8468438649828,32.0689996810298],[34.8637856279928,32.0590059440186],[34.8773961450173,32.0680478960404],[34.8804418550117,32.0528193460686],[34.8786334639958,32.0466327470143],[34.8605495609931,32.0488218510146],[34.8468438649828,32.0689996810298]]]},"properties":{"Dsc":"תשתית אורתופוטו בישראל עדכני לאפריל 2019","Rms":null,"Ep90":"3","Scale":null,"Source":"MAS_6_ORT_247993-1.0","Resolution":"0.2","SensorType":"OTHER","SourceName":"O_arzi_mz_w84geo_Tiff_20cm","UpdateDate":"06/04/2019"}}]}', version: "1.0.0", projection: "roie",csv_path: "csv_data/data/wmts_shaziri.csv", gridName: "newGrids", imageType: ".png", layer: "blume_marble-Orthophoto", users: 15, port: 8080, layer_type: "wmts", test_to_run: "Lateron" ,sub_url_for_pycsw: "https://catalog-qa-raster-catalog-pycsw-route-raster.apps.v0h0bdx6.eastus.aroapp.io/"}    # VAR: VALUE
+  environment: {
+      measure_time: false,
+      mc_region_value: "ישראל, ירדן",
+      mc_polygon_value: '{"bbox":[34.8468438649828,32.0466327470143,34.8804418550117,32.0689996810298],"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[34.8468438649828,32.0689996810298],[34.8637856279928,32.0590059440186],[34.8773961450173,32.0680478960404],[34.8804418550117,32.0528193460686],[34.8786334639958,32.0466327470143],[34.8605495609931,32.0488218510146],[34.8468438649828,32.0689996810298]]]},"properties":{"Dsc":"תשתית אורתופוטו בישראל עדכני לאפריל 2019","Rms":null,"Ep90":"3","Scale":null,"Source":"MAS_6_ORT_247993-1.0","Resolution":"0.2","SensorType":"OTHER","SourceName":"O_arzi_mz_w84geo_Tiff_20cm","UpdateDate":"06/04/2019"}}]}',
+      version: "1.0.0",
+      projection: "roie",
+      csv_path: "csv_data/data/wmts_shaziri.csv",
+      gridName: "newGrids",
+      imageType: ".png",
+      layer: "blume_marble-Orthophoto",
+      users: 15,
+      port: 8080,
+      layer_type: "wmts",
+      test_to_run: "Lateron",
+      sub_url_for_pycsw: "https://catalog-qa-raster-catalog-pycsw-route-raster.apps.v0h0bdx6.eastus.aroapp.io/",
+    } # VAR: VALUE
   # loadtest.environment_secret -- environment variables used in the load test for both master and workers, stored as secrets
-  environment_secret: 'replace_me'
+  environment_secret:
+    "replace_me"
     # VAR: VALUE
   # loadtest.environment_external_secret -- environment variables used in the load test for both master and workers, stored in secrets created outside this chart. Each secret contains a list of values in it. Usage: `secret_name: [AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY]`
-  environment_external_secret: {}
+  environment_external_secret:
+    {}
     # SECRET_NAME: VAR
   # loadtest.mount_external_secret -- additional mount used in the load test for both master and workers, stored in secrets created outside this chart. Each secret contains a list of values in it. Usage: `mountPath: yourMountLocation, files: { secret_name: [AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY] }`
   mount_external_secret: {}
-  secret_name_api_key_locust: 'automation-secret'
-  sub_url_secret: 'automation-sub-url'
+  secret_name_api_key_locust: "automation-secret"
+  sub_url_secret:
+    "automation-sub-url"
     # mountPath: yourMountLocation
     # files:
-      # secret_name: var
+    # secret_name: var
   # loadtest.headless -- whether to run locust with headless settings
   headless: false
   # loadtest.tags -- whether to run locust with `--tags [TAG [TAG ...]]` options, so only tasks with any matching tags will be executed
@@ -57,7 +75,8 @@ master:
   # master.logLevel -- Log level. Can be INFO or DEBUG
   logLevel: INFO
   # master.resources -- resources for the locust master to add
-  resources: {}
+  resources:
+    {}
 
     # limits:
     #   cpu: 2000m
@@ -74,9 +93,9 @@ master:
   environment: {}
   # master.args -- Any extra command args for the master
   args: []
-#  command:
-#    - sh
-#    - /config/docker-entrypoint.sh
+  #  command:
+  #    - sh
+  #    - /config/docker-entrypoint.sh
   strategy:
     type: RollingUpdate
   # master.pdb.enabled -- Whether to create a PodDisruptionBudget for the master pod
@@ -92,7 +111,7 @@ master:
     enabled: false
     csv: "/home/kaka/dam/"
     csv_history: false
-    
+
   # master.restartPolicy -- master pod's restartPolicy. Can be Always, OnFailure, or Never.
   restartPolicy: Always
 
@@ -108,7 +127,8 @@ worker:
     maxReplicas: 100
     targetCPUUtilizationPercentage: 40
   # worker.resources -- resources for the locust worker
-  resources: {}
+  resources:
+    {}
     # limits:
     #   cpu: 500m
     #   memory: 256Mi
@@ -121,12 +141,12 @@ worker:
   # worker.envs_include_default -- Whether to include default environment variables
   envs_include_default: true
   # worker.environment -- environment variables for the workers
-  environment: {SUB_URL_FOR_IDS: "https://www.google.com"}
+  environment: { SUB_URL_FOR_IDS: "https://www.google.com" }
   # worker.args -- Any extra command args for the workers
   args: []
-#  command:
-#    - sh
-#    - /config/docker-entrypoint.sh
+  #  command:
+  #    - sh
+  #    - /config/docker-entrypoint.sh
   strategy:
     type: RollingUpdate
   # worker.restartPolicy -- worker pod's restartPolicy. Can be Always, OnFailure, or Never.
@@ -136,10 +156,12 @@ nameOverride: ""
 fullnameOverride: ""
 pullSecretName: acr-registry
 
-podSecurityContext: {}
+podSecurityContext:
+  {}
   # fsGroup: 2000
 
-securityContext: {}
+securityContext:
+  {}
   # capabilities:
   #   drop:
   #   - ALL

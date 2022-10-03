@@ -1,6 +1,9 @@
-from test.get_ids import extract_ids, check_id
 import time
-from locust import HttpUser, task
+from test.get_ids import check_id
+from test.get_ids import extract_ids
+
+from locust import HttpUser
+from locust import task
 
 
 class MyUserIdTask(HttpUser):

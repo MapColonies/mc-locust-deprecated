@@ -1,9 +1,10 @@
-from math import floor
 import typing
+from math import floor
 
 # ToDo: Fix Typing input and output.
 # ToDo: Add Zoom tuple range -> from 0 to "zoom_level" as tuple
 # ToDo: Zoom level convertor -> from deg (check in DB if its only deg) to zoom_level(0-20 dict i sent you in slack)
+
 
 class Range:
     def __init__(self, min_val, max_val):
@@ -15,7 +16,7 @@ class Range:
         return (self.min_val, self.max_val)
 
 
-class MapproxyLayer():
+class MapproxyLayer:
     def __init__(self, layer_id, zoom, product_bbox):
         self.layer_id = layer_id
         self.bbox = product_bbox
@@ -48,8 +49,12 @@ class MapproxyLayer():
         return Range(min_tile_x, max_tile_x)
 
     def get_y_tile_ranges(self):
-        min_tile_y = pow(2, self.zoom_level) - \
-            floor((self.max_y_deg + 90) / self.deg_per_tile, 1) - 1
-        max_tile_y = pow(2, self.zoom_level) - \
-            floor((self.min_y_deg + 90) / self.deg_per_tile, 1)
+        min_tile_y = (
+            pow(2, self.zoom_level)
+            - floor((self.max_y_deg + 90) / self.deg_per_tile, 1)
+            - 1
+        )
+        max_tile_y = pow(2, self.zoom_level) - floor(
+            (self.min_y_deg + 90) / self.deg_per_tile, 1
+        )
         return Range(min_tile_y, max_tile_y)

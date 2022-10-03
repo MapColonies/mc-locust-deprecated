@@ -1,7 +1,7 @@
 locust
-pandas~=1.4.2
 locust_plugins
+pandas~=1.4.2
 requests~=2.27.1
-xmltodict~=0.13.0
 setuptools~=60.2.0
 wheel
+xmltodict~=0.13.0

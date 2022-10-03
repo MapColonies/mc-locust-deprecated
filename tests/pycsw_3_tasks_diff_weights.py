@@ -1,5 +1,8 @@
 from bson import encode
-from locust import user, task, HttpUser
+from locust import HttpUser
+from locust import task
+from locust import user
+
 import common.config as cfg
 
 # Environment variables for XML requests
@@ -116,18 +119,21 @@ class SizingUser(HttpUser):
     @task(1)
     def get_records_by_polygon(self):
         r1 = self.client.post(
-            '/', data=POLYGON_XML.encode('UTF-8'), headers=cfg.REQUEST_HEADER)
+            "/", data=POLYGON_XML.encode("UTF-8"), headers=cfg.REQUEST_HEADER
+        )
 
     @task(2)
     def get_records_by_id(self):
         r2 = self.client.post(
-            '/', data=ID_RECORD_XML.encode('UTF-8'), headers=cfg.REQUEST_HEADER)
+            "/", data=ID_RECORD_XML.encode("UTF-8"), headers=cfg.REQUEST_HEADER
+        )
         # print(r2.text)
 
     @task(3)
     def get_records_by_region(self):
         r3 = self.client.post(
-            '/', data=REGION_RECORD_XML.encode('UTF-8'), headers=cfg.REQUEST_HEADER)
+            "/", data=REGION_RECORD_XML.encode("UTF-8"), headers=cfg.REQUEST_HEADER
+        )
 
     # @task
     # def get_records_by_bbox(self):

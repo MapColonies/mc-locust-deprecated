@@ -1,6 +1,11 @@
 import os
+
+from locust import between
+from locust import HttpUser
+from locust import task
+from locust import TaskSet
+
 from common.config import REQUEST_HEADER
-from locust import HttpUser, TaskSet, task, between
 
 RECORD_BY_ID_XML = r"""<?xml version="1.0" encoding="UTF-8"?>
 
@@ -31,12 +36,13 @@ RECORD_BY_ID_XML = r"""<?xml version="1.0" encoding="UTF-8"?>
 </csw:GetRecords>
 """
 
+
 class WebsiteUser(HttpUser):
     # wait_time = between(5, 9)
 
     @task(1)
     def by_id(self):
-        response = self.client.post(url="/", data=RECORD_BY_ID_XML.encode('utf-8'),
-                                    headers=REQUEST_HEADER)
+        response = self.client.post(
+            url="/", data=RECORD_BY_ID_XML.encode("utf-8"), headers=REQUEST_HEADER
+        )
         print(response.text)
-

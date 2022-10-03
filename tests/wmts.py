@@ -1,9 +1,16 @@
-from locust import HttpUser, task, constant_throughput, constant, between, constant_pacing
+import logging
+import time
+
+from locust import between
+from locust import constant
+from locust import constant_pacing
+from locust import constant_throughput
+from locust import HttpUser
+from locust import task
 from locust_plugins import StopUser
 from locust_plugins.csvreader import CSVReader
+
 import common.config as cfg
-import time
-import logging
 
 logging.error("Reading CSV file")
 ssn_reader = CSVReader("csv_data/data/wmts_shaziri.csv")
@@ -29,7 +36,9 @@ class MyUser(HttpUser):
     def index(self):
         points = next(ssn_reader)
         print(points)
-        self.client.get(f"/{cfg.LAYER_TYPE}/{cfg.LAYER}/{cfg.GRIDNAME}/{points[0]}/{points[1]}/{points[2]}{cfg.IMAGE_FORMAT}",
-                        headers=cfg.REQUEST_HEADER)
-        
+        self.client.get(
+            f"/{cfg.LAYER_TYPE}/{cfg.LAYER}/{cfg.GRIDNAME}/{points[0]}/{points[1]}/{points[2]}{cfg.IMAGE_FORMAT}",
+            headers=cfg.REQUEST_HEADER,
+        )
+
     host = cfg.HOST

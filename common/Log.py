@@ -3,36 +3,36 @@ import os
 import time
 
 LEVELS = {
-    'debug': logging.DEBUG,
-    'info': logging.INFO,
-    'warning': logging.WARNING,
-    'error': logging.ERROR,
-    'critical': logging.CRITICAL
+    "debug": logging.DEBUG,
+    "info": logging.INFO,
+    "warning": logging.WARNING,
+    "error": logging.ERROR,
+    "critical": logging.CRITICAL,
 }
 
 logger = logging.getLogger()
-level = 'default'
+level = "default"
 
 
 def create_file(filename):
-    path = filename[0:filename.rfind('/')]
+    path = filename[0 : filename.rfind("/")]
     if not os.path.isdir(path):
         os.makedirs(path)
     if not os.path.isfile(filename):
-        fd = open(filename, mode='w', encoding='utf-8')
+        fd = open(filename, mode="w", encoding="utf-8")
         fd.close()
     else:
         pass
 
 
 def set_handler(levels):
-    if levels == 'error':
+    if levels == "error":
         logger.addHandler(MyLog.err_handler)
     logger.addHandler(MyLog.handler)
 
 
 def remove_handler(levels):
-    if levels == 'error':
+    if levels == "error":
         logger.removeHandler(MyLog.err_handler)
     logger.removeHandler(MyLog.handler)
 
@@ -43,42 +43,42 @@ def get_current_time():
 
 class MyLog:
     path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    log_file = path + '/Log/log.log'
-    err_file = path + '/Log/err.log'
+    log_file = path + "/Log/log.log"
+    err_file = path + "/Log/err.log"
     logger.setLevel(LEVELS.get(level, logging.NOTSET))
     create_file(log_file)
     create_file(err_file)
-    date = '%Y-%m-%d %H:%M:%S'
+    date = "%Y-%m-%d %H:%M:%S"
 
-    handler = logging.FileHandler(log_file, encoding='utf-8', mode='w')
-    err_handler = logging.FileHandler(err_file, encoding='utf-8', mode='w')
+    handler = logging.FileHandler(log_file, encoding="utf-8", mode="w")
+    err_handler = logging.FileHandler(err_file, encoding="utf-8", mode="w")
 
     @staticmethod
     def debug(log_meg):
-        set_handler('debug')
+        set_handler("debug")
         logger.debug("[DEBUG " + get_current_time() + "]" + log_meg)
-        remove_handler('debug')
+        remove_handler("debug")
 
     @staticmethod
     def info(log_meg):
-        set_handler('info')
+        set_handler("info")
         logger.info("[INFO " + get_current_time() + "]" + log_meg)
-        remove_handler('info')
+        remove_handler("info")
 
     @staticmethod
     def warning(log_meg):
-        set_handler('warning')
+        set_handler("warning")
         logger.warning("[WARNING " + get_current_time() + "]" + log_meg)
-        remove_handler('warning')
+        remove_handler("warning")
 
     @staticmethod
     def error(log_meg):
-        set_handler('error')
+        set_handler("error")
         logger.error("[ERROR " + get_current_time() + "]" + log_meg)
-        remove_handler('error')
+        remove_handler("error")
 
     @staticmethod
     def critical(log_meg):
-        set_handler('critical')
+        set_handler("critical")
         logger.error("[CRITICAL " + get_current_time() + "]" + log_meg)
-        remove_handler('critical')
+        remove_handler("critical")

@@ -1,8 +1,12 @@
 import os
-
-from playground.get_ids import  header, extract_ids
 import time
-from locust import HttpUser, task, TaskSet
+
+from locust import HttpUser
+from locust import task
+from locust import TaskSet
+
+from playground.get_ids import extract_ids
+from playground.get_ids import header
 
 
 class UserBehaviour(HttpUser):
@@ -32,7 +36,7 @@ class UserBehaviour(HttpUser):
         # sub_url = "pycsw/?service=CSW&request" \
         #     "=GetRecordById&typenames=mc:MCRasterRecord&ElementSetName=full&resultType=results&outputSchema=http" \
         #     "://schema.mapcolonies.com/raster&version=2.0.2&id="
-        sub_url = os.environ['SUB_URL']
+        sub_url = os.environ["SUB_URL"]
         if self.response_id_data["state"]:
             for id_item in self.response_id_data["resp"]:
 
@@ -46,5 +50,3 @@ class UserBehaviour(HttpUser):
 
     def on_start(self):
         self.extract_ids()
-
-    

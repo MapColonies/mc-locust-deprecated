@@ -1,12 +1,12 @@
-import os
-from typing import Iterable, int
+from typing import Iterable
+
 import common.config as cfg
 
 
 def xml_builder_job():
     # Return XML string after building it from the template.
     # ToDO: Shay change all relevant values
-    XML_BODY = f""" 
+    XML_BODY = f"""
     <?xml version="1.0" encoding="UTF-8"?>
 <csw:GetRecords xmlns:csw="http://www.opengis.net/cat/csw/2.0.2" service="CSW" maxRecords="1"  startPosition="1"  outputSchema="http://schema.mapcolonies.com/raster" version="2.0.2" xmlns:mc="http://schema.mapcolonies.com/raster" >
   <csw:Query typeNames={cfg.HOST}>
@@ -25,7 +25,7 @@ def xml_builder_job():
     return XML_BODY
 
 
-class WMTSIterator():
+class WMTSIterator:
 
     "WMTSIterator - with range"
 

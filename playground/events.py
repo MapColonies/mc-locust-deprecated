@@ -1,4 +1,5 @@
-from locust import FastHttpUser, task
+from locust import FastHttpUser
+from locust import task
 
 
 class WebsiteUser(FastHttpUser):

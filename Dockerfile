@@ -76,5 +76,3 @@ COPY . /mnt/locust/
 # ENTRYPOINT ["/docker-entrypoint.sh"]
 
 # EXPOSE 8089
-
-
