@@ -1,7 +1,8 @@
-import js2py
-import config as cfg
 from typing import Iterable
 
+import js2py
+
+import config as cfg
 
 
 def execute_js_code(js_code):
