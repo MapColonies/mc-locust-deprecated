@@ -1,9 +1,10 @@
 import time
 from datetime import date
 from datetime import datetime
+from random import shuffle
 from typing import Iterable
 from typing import Iterator
-from random import shuffle
+
 from locust import constant
 from locust import events
 from locust import HttpUser
@@ -30,16 +31,14 @@ now = datetime.now()
 def on_test_start(environment, **kwargs):
     current_time = now.strftime("%H:%M:%S")
     today = date.today()
-    print(
-        f"Test Started \nCurrent Time : {current_time} \nToday's date: {today} ")
+    print(f"Test Started \nCurrent Time : {current_time} \nToday's date: {today} ")
 
 
 @events.test_stop.add_listener
 def on_test_stop(environment, **kwargs):
     current_time = now.strftime("%H:%M:%S")
     today = date.today()
-    print(
-        f"Test Ended \nCurrent Time : {current_time} \nToday's date: {today} ")
+    print(f"Test Ended \nCurrent Time : {current_time} \nToday's date: {today} ")
 
 
 # class ProActiveUser(HttpUser):
