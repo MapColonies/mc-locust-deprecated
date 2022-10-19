@@ -9,6 +9,7 @@ def zoom_level_convertor(deg_value: float) -> Optional[int]:
     :param deg_value: float number that presents the resolution deg
     :return: zoom level value : int
     """
+    
     for zoom_level, deg in config.zoom_level_dict.items():
         if deg_value == deg:
             return zoom_level
@@ -49,6 +50,7 @@ class MapproxyLayer:
         return self.bbox[3]
 
     @property
+
     def zoom_level(self) -> int:
         return zoom_level_convertor(deg_value=self.zoom_deg)
 
@@ -56,12 +58,14 @@ class MapproxyLayer:
     def deg_per_tile(self):
         return self.get_deg_per_tile(zoom_level=self.zoom_level)
 
+
     def get_x_tile_ranges(self) -> Range:
         min_tile_x = floor((self.min_x_deg + 180) / self.deg_per_tile)
         max_tile_x = floor((self.max_x_deg + 180) / self.deg_per_tile) + 1
         return Range(min_tile_x, max_tile_x)
 
     def get_y_tile_ranges(self) -> Range:
+
         min_tile_y = pow(2, self.zoom_level) - \
                      floor((self.max_y_deg + 90) / self.deg_per_tile) - 1
         max_tile_y = pow(2, self.zoom_level) - \
@@ -83,3 +87,4 @@ x = MapproxyLayer("shay7", 0.0439453125, [35.024411528661574, 32.79419004139809,
 print(x.get_x_tile_ranges().range)
 print(x.get_y_tile_ranges().range)
 print(x.get_zoom_range().range)
+

@@ -60,7 +60,7 @@
 # WORKDIR /locust
 
 
-FROM locustio/locust
+FROM locustio/locust:2.12.1
 RUN pip3 install pandas
 RUN pip3 install locust_plugins
 RUN pip3 install xmltodict
@@ -76,5 +76,3 @@ COPY . /mnt/locust/
 # ENTRYPOINT ["/docker-entrypoint.sh"]
 
 # EXPOSE 8089
-
-

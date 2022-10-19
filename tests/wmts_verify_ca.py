@@ -35,10 +35,10 @@ class MyUser(HttpUser):
     @task(1)
     def index(self):
         points = next(ssn_reader)
-        print(points)
         self.client.get(
             f"/{cfg.LAYER_TYPE}/{cfg.LAYER}/{cfg.GRIDNAME}/{points[0]}/{points[1]}/{points[2]}{cfg.IMAGE_FORMAT}",
             headers=cfg.REQUEST_HEADER,
+            verify=cfg.CA_PATH,
         )
 
     host = cfg.HOST

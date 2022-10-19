@@ -1,10 +1,9 @@
-version: '3'
+version: "3"
 
 services:
-#  myservice:
-#    build:
-#      context: .
-
+  #  myservice:
+  #    build:
+  #      context: .
 
   master:
     build:

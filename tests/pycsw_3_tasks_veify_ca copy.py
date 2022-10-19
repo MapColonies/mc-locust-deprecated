@@ -1,5 +1,12 @@
 from bson import encode
-from locust import user, task, HttpUser, constant, constant_pacing, between, constant_throughput
+from locust import between
+from locust import constant
+from locust import constant_pacing
+from locust import constant_throughput
+from locust import HttpUser
+from locust import task
+from locust import user
+
 import common.config as cfg
 
 # Environment variables for XML requests
@@ -131,21 +138,32 @@ class SizingUser(HttpUser):
     # wait_time = between(cfg.MIN_WAIT, cfg.MAX_WAIT)
     # wait_time = constant_pacing(1) # Works bes
 
-        
     @task(1)
     def get_records_by_polygon(self):
-        # r1 = self.client.post('/', data=POLYGON_XML.encode('UTF-8'), headers=cfg.REQUEST_HEADER)
-        self.client.get('/', verify=True, cert={'cert': cfg.CERT_PATH, 'key': cfg.KEY_PATH})
+        r1 = self.client.post(
+            "/",
+            data=POLYGON_XML.encode("UTF-8"),
+            headers=cfg.REQUEST_HEADER,
+            cert={"cert": cfg.CERT_PATH, "key": cfg.KEY_PATH},
+        )
 
-    # @task(1)
-    # def get_records_by_id(self):
-    #     r2 = self.client.post('/', data=ID_RECORD_XML.encode('utf-8'), headers=cfg.REQUEST_HEADER)
-        # print(r2.text)
+    @task(1)
+    def get_records_by_id(self):
+        r2 = self.client.post(
+            "/",
+            data=ID_RECORD_XML.encode("utf-8"),
+            headers=cfg.REQUEST_HEADER,
+            cert={"cert": cfg.CERT_PATH, "key": cfg.KEY_PATH},
+        )
 
-    # @task(1)
-    # def get_records_by_region(self):
-    #     r3 = self.client.post('/', data=REGION_RECORD_XML.encode('utf-8'), headers=cfg.REQUEST_HEADER)
-        # print(r3.text)
+    @task(1)
+    def get_records_by_region(self):
+        r3 = self.client.post(
+            "/",
+            data=REGION_RECORD_XML.encode("utf-8"),
+            headers=cfg.REQUEST_HEADER,
+            cert={"cert": cfg.CERT_PATH, "key": cfg.KEY_PATH},
+        )
 
     # @task
     # def get_records_by_bbox(self):

@@ -1,8 +1,9 @@
-locust~=2.8.6
-pandas~=1.4.2
+locust
 locust_plugins
+pandas~=1.4.2
 requests~=2.27.1
-xmltodict~=0.13.0
 setuptools~=60.2.0
 wheel
 Js2Py==0.71
+xmltodict~=0.13.0
+
