@@ -1,6 +1,12 @@
+import js2py
+import config as cfg
 from typing import Iterable
 
-import common.config as cfg
+
+
+def execute_js_code(js_code):
+    js = str(js_code).replace("document.write", "return ")
+    return js2py.eval_js(js)
 
 
 def xml_builder_job():
