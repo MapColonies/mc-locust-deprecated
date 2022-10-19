@@ -28,6 +28,7 @@ loadtest:
       gridName: "newGrids",
       imageType: ".png",
       layer: "blueMarble-Orthophoto",
+
       users: 15,
       port: 8080,
       layer_type: "wmts",
