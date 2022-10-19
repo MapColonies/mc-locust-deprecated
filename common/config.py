@@ -55,7 +55,7 @@ CERT_PATH = os.environ.get("cert_path", "/usr/local/share/ca-certificates/client
 KEY_PATH = os.environ.get("key_path", "/usr/local/share/ca-certificates/client.key")
 PRO_ACTIVE_WMTS_BBOX = os.environ.get(
     "pro_active_wmts_bbox",
-    [35.024411528661574, 32.79419004139809, 35.37597717328861, 32.947998391903226],
+    [35.024411528661574, 35.79419004139809, 35.37597717328861, 35.947998391903226],
 )
 # Request Parameters
 PARAMS = {

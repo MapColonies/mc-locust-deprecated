@@ -15,14 +15,15 @@ import common.config as cfg
 
 logging.error("Reading CSV file")
 ssn_reader = CSVReader("csv_data/data/wmts_shaziri.csv")
-
-layer1 = MapproxyLayer(
-            layer_id="shay5",
-            zoom=0.0439453125,
-            product_bbox=[
-                cfg.PRO_ACTIVE_WMTS_BBOX
-            ],
-        )
+# print(cfg.PRO_ACTIVE_WMTS_BBOX)
+# x = MapproxyLayer(
+#             layer_id="shay5",
+#             zoom=0.0439453125,
+#             product_bbox=[-180,-90,180,90],
+#         )
+# print(f"x_tile: {x.get_x_tile_ranges().range}")
+# print(f"y_tile: {x.get_y_tile_ranges().range}")
+# print(f"zoom: {x.get_zoom_range().range}")
 
 class MyUser(HttpUser):
     if cfg.WAIT_FUNCTION == 1:
