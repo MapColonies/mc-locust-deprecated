@@ -1,5 +1,6 @@
 import logging
 import time
+from utilities.mapproxy_layer import MapproxyLayer
 
 from locust import between
 from locust import constant
@@ -39,6 +40,17 @@ class MyUser(HttpUser):
         self.client.get(
             f"/{cfg.LAYER_TYPE}/{cfg.LAYER}/{cfg.GRIDNAME}/{points[0]}/{points[1]}/{points[2]}{cfg.IMAGE_FORMAT}",
             headers=cfg.REQUEST_HEADER,
+        )
+
+        layer1 = MapproxyLayer(
+            layer_id="shay5",
+            zoom=0.0439453125,
+            product_bbox=[
+                35.024411528661574,
+                32.79419004139809,
+                35.37597717328861,
+                32.947998391903226,
+            ],
         )
 
     host = cfg.HOST
