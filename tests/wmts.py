@@ -1,6 +1,5 @@
 import logging
 import time
-from utilities.mapproxy_layer import MapproxyLayer
 
 from locust import between
 from locust import constant
@@ -12,6 +11,7 @@ from locust_plugins import StopUser
 from locust_plugins.csvreader import CSVReader
 
 import common.config as cfg
+from utilities.mapproxy_layer import MapproxyLayer
 
 logging.error("Reading CSV file")
 ssn_reader = CSVReader("csv_data/data/wmts_shaziri.csv")
@@ -24,6 +24,7 @@ ssn_reader = CSVReader("csv_data/data/wmts_shaziri.csv")
 # print(f"x_tile: {x.get_x_tile_ranges().range}")
 # print(f"y_tile: {x.get_y_tile_ranges().range}")
 # print(f"zoom: {x.get_zoom_range().range}")
+
 
 class MyUser(HttpUser):
     if cfg.WAIT_FUNCTION == 1:
@@ -49,7 +50,5 @@ class MyUser(HttpUser):
             f"/{cfg.LAYER_TYPE}/{cfg.LAYER}/{cfg.GRIDNAME}/{points[0]}/{points[1]}/{points[2]}{cfg.IMAGE_FORMAT}",
             headers=cfg.REQUEST_HEADER,
         )
-
-
 
     host = cfg.HOST
