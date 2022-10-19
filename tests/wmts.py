@@ -16,6 +16,13 @@ import common.config as cfg
 logging.error("Reading CSV file")
 ssn_reader = CSVReader("csv_data/data/wmts_shaziri.csv")
 
+layer1 = MapproxyLayer(
+            layer_id="shay5",
+            zoom=0.0439453125,
+            product_bbox=[
+                cfg.PRO_ACTIVE_WMTS_BBOX
+            ],
+        )
 
 class MyUser(HttpUser):
     if cfg.WAIT_FUNCTION == 1:
@@ -42,15 +49,6 @@ class MyUser(HttpUser):
             headers=cfg.REQUEST_HEADER,
         )
 
-        layer1 = MapproxyLayer(
-            layer_id="shay5",
-            zoom=0.0439453125,
-            product_bbox=[
-                35.024411528661574,
-                32.79419004139809,
-                35.37597717328861,
-                32.947998391903226,
-            ],
-        )
+
 
     host = cfg.HOST
