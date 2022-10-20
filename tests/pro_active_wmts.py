@@ -27,7 +27,7 @@ class MyUser(HttpUser):
         wait_time = between(cfg.MIN_WAIT, cfg.MAX_WAIT)
         print("Choosing between wait time")
     elif cfg.WAIT_FUNCTION == 4:
-        wait_time = constant_pacing(cfg.WAIT_TIME)
+        wait_time = constant_pacing(int(cfg.WAIT_TIME))
         print("Choosing constant pacing wait time")
     else:
         print("Invalid wait function")
