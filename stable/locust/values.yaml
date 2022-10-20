@@ -27,7 +27,7 @@ loadtest:
       csv_path: "csv_data/data/wmts_shaziri.csv",
       gridName: "newGrids",
       imageType: ".png",
-      layer: "blueMarble-Orthophoto",
+      layer: "bluemarble_4km_2nd_test-Orthophoto",
 
       users: 15,
       port: 8080,
