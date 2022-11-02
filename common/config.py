@@ -39,17 +39,19 @@ PORT = os.environ.get("port", "80")
 HOST = os.environ.get(
     "HOST", "https://pycsw-qa-pycsw-route-raster.apps.v0h0bdx6.eastus.aroapp.io/"
 )
-REQUEST_HEADER = {
-    "X-API-KEY": os.environ.get("SECRET_VALUE_API"),
-    "Content-Type": "text/text; charset=utf-8",
-}
+TOKEN = os.environ.get("SECRET_VALUE_API")
+# REQUEST_HEADER = {
+#     "X-API-KEY": os.environ.get("SECRET_VALUE_API"),
+#     "Content-Type": "text/text; charset=utf-8",
+# }
 USERS = os.environ.get("users", "15")
 SUB_URL = os.environ.get("sub_url_for_pycsw")
 # 1 = constant, 2 = constant_throughput, 3 = between, 4 = constant_pacing
-WAIT_FUNCTION = os.environ.get("wait_function", 4)
-MIN_WAIT = os.environ.get("min_wait", 1)
-MAX_WAIT = os.environ.get("max_wait", 1)
-WAIT_TIME = os.environ.get("wait_time", 1)
+WAIT_FUNCTION = int(os.environ.get("wait_function", 4))
+MIN_WAIT = int(os.environ.get("min_wait", 1))
+MAX_WAIT = int(os.environ.get("max_wait", 1))
+WAIT_TIME = int(os.environ.get("wait_time", 1))
+# TOKEN = os.environ.get("token","add")
 CA_PATH = os.environ.get("ca_path", "/usr/local/share/ca-certificates/ca.crt")
 CERT_PATH = os.environ.get("cert_path", "/usr/local/share/ca-certificates/client.crt")
 KEY_PATH = os.environ.get("key_path", "/usr/local/share/ca-certificates/client.key")

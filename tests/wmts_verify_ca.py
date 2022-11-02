@@ -36,8 +36,8 @@ class MyUser(HttpUser):
     def index(self):
         points = next(ssn_reader)
         self.client.get(
-            f"/{cfg.LAYER_TYPE}/{cfg.LAYER}/{cfg.GRIDNAME}/{points[0]}/{points[1]}/{points[2]}{cfg.IMAGE_FORMAT}",
-            headers=cfg.REQUEST_HEADER,
+            f"/{cfg.LAYER_TYPE}/{cfg.LAYER}/{cfg.GRIDNAME}/{points[0]}/{points[1]}/{points[2]}{cfg.IMAGE_FORMAT}?token={cfg.TOKEN}",
+            # headers=cfg.REQUEST_HEADER,
             verify=cfg.CA_PATH,
         )
 

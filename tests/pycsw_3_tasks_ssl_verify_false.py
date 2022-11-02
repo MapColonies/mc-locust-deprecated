@@ -139,7 +139,7 @@ class SizingUser(HttpUser):
         r1 = self.client.post(
             "/",
             data=POLYGON_XML.encode("UTF-8"),
-            headers=cfg.REQUEST_HEADER,
+            # headers=cfg.REQUEST_HEADER,
             verify=False,
         )
 
@@ -148,7 +148,7 @@ class SizingUser(HttpUser):
         r2 = self.client.post(
             "/",
             data=ID_RECORD_XML.encode("utf-8"),
-            headers=cfg.REQUEST_HEADER,
+            # headers=cfg.REQUEST_HEADER,
             verify=False,
         )
 
@@ -157,7 +157,7 @@ class SizingUser(HttpUser):
         r3 = self.client.post(
             "/",
             data=REGION_RECORD_XML.encode("utf-8"),
-            headers=cfg.REQUEST_HEADER,
+            # headers=cfg.REQUEST_HEADER,
             verify=False,
         )
 
