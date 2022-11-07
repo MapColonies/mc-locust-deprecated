@@ -28,6 +28,7 @@ LAYER_SPEC = _pg_schemas.get("layer_spec")
 MAPPROXY_CONFIG = _pg_schemas.get("mapproxy_config")
 RASTER_CATALOG = _pg_schemas.get("raster_catalog_manager")
 PUBLIC = _pg_schemas.get("public")
+LAYERS_LIST = ["danny", "danny3"]
 
 
 
@@ -59,5 +60,3 @@ zoom_level_dict = {
     21: 0.000000335276126861572,
     22: 0.000000167638063430786,
 }
-
-
