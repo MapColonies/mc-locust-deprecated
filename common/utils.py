@@ -1,13 +1,6 @@
 from typing import Iterable
-
-import js2py
-
+from itertools import product
 import config as cfg
-
-
-def execute_js_code(js_code):
-    js = str(js_code).replace("document.write", "return ")
-    return js2py.eval_js(js)
 
 
 def xml_builder_job():
@@ -33,7 +26,6 @@ def xml_builder_job():
 
 
 class WMTSIterator:
-
     "WMTSIterator - with range"
 
     def __init__(self, range_: range):
@@ -48,8 +40,52 @@ class WMTSIterator:
             return next(self.points)
 
 
+def wmts_url_builder(x_val, y_val, zoom_val):
+    """
+    This method build the url of given tile parameters
+    :return:
+    wmts_url: url of the given layer's tile
+    """
+    wmts_url = f"/{cfg.LAYER_TYPE}/{cfg.LAYER}/{cfg.GRIDNAME}/{x_val}/{y_val}/{zoom_val}{cfg.IMAGE_FORMAT}?token={cfg.TOKEN}"
+    return wmts_url
+
+
+# def create_tiles_url_order(zoom_ranges, x_ranges, y_ranges):
+#     """
+#     This method create possible tiles order based on range's value
+#     :param zoom_ranges: zoom ranges value
+#     :param x_ranges: x ranges value
+#     :param y_ranges: y ranges value
+#
+#     :return: tiles combination
+#     """
+#     x_values = [*range(x_ranges[0], x_ranges[1] + 1)]
+#     y_values = [*range(y_ranges[0], y_ranges[1] + 1)]
+#     zoom_values = [*range(zoom_ranges[0], zoom_ranges[1] + 1)]
+#     return list(product(zoom_values, x_values, y_values))
+#
+#
+# print(create_tiles_url_order([0, 4], [5, 6], [19, 20]))
+
+
+def create_tiles_url_order(zoom_ranges, x_ranges, y_ranges):
+    """
+    This method create possible tiles order based on range's value
+    :param zoom_ranges: zoom ranges value
+    :param x_ranges: x ranges value
+    :param y_ranges: y ranges value"""
+    tiles_lst = []
+    x_values = [*range(x_ranges[0], x_ranges[1] + 1)]
+    y_values = [*range(y_ranges[0], y_ranges[1] + 1)]
+    zoom_values = [*range(zoom_ranges[0], zoom_ranges[1] + 1)]
+    print(list(product(zoom_values, y_values, x_values)))
+    print(len(list(product(zoom_values, y_values, x_values))))
+    return list(product(zoom_values, y_values, x_values))
+
+
+create_tiles_url_order([0, 4], [5, 6], [19, 20])
 # class WMTSIterator():
-"WMTSIterator - without range"
+# "WMTSIterator - without range"
 #     def __init__(self, start_index, end_index):
 #         self.start = start_index
 #         self.end = end_index
@@ -61,3 +97,9 @@ class WMTSIterator:
 #         except StopIteration:
 #             self.points = iter(range(self.start, self.end))
 #             return next(self.points)
+
+import glob, os
+filelist = glob.glob('D:\Train\*.jpg')
+print(len(filelist))
+for file in filelist:
+    print(file)

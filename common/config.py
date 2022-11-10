@@ -1,9 +1,9 @@
+import json
 import os
-
+from mc_automation_tools import common
 
 # Files Parameters
 WMTS_CSV_PATH = os.environ.get("csv_path", "csv_data/data/wmts_csv_user.csv")
-
 
 # WMTS Parameters
 LAYER = os.environ.get("layer", "OrthophotoHistory")
@@ -12,7 +12,6 @@ GRIDNAME = os.environ.get("gridName", "default")
 VERSION = os.environ.get("version", "2.0.2")
 PROJECTION = os.environ.get("projection", "newGrids")
 IMAGE_FORMAT = os.environ.get("imageType", ".png")
-
 
 # PYCSW Parameters)
 PYCSW_RECORD_ID = os.environ.get("pycsw_record_id", "mc:id")
@@ -32,7 +31,6 @@ PYCSW_POLYGON_PROPERTY = os.environ.get("mc_polygon_property", "mc:layerPolygonP
 PYCSW_ID_VALUE = os.environ.get("mc_id_value", "d53a03e3-650b-4f4e-9047-071667741c08")
 PYCSW_REGION_VALUE = os.environ.get("mc_region_value", "string")
 PYCSW_POLYGON_VALUE = os.environ.get("mc_polygon_value", "")
-
 
 # Locust Settings (Parameters)
 PORT = os.environ.get("port", "80")
@@ -76,7 +74,6 @@ PATH_BUILDER = (
     f"{LAYER_TYPE}/{LAYER}/{PROJECTION}/TileMatrix/TileCol/TileRow{IMAGE_FORMAT}"
 )
 
-
 zoom_level_dict = {
     0: 0.703125,
     1: 0.3515625,
@@ -102,3 +99,32 @@ zoom_level_dict = {
     21: 0.000000335276126861572,
     22: 0.000000167638063430786,
 }
+
+CONF_FILE = common.get_environment_variable("CONF_FILE", None)
+if not CONF_FILE:
+    raise EnvironmentError("Should provide path for CONF_FILE")
+try:
+    with open(CONF_FILE, "r", encoding="utf-8") as fp:
+        conf = json.load(fp)
+except Exception as e:
+    raise EnvironmentError("Failed to load JSON for configuration") from e
+
+_pg_credentials = conf.get("pg_credential")
+PG_USER = _pg_credentials.get("pg_user", None)
+PG_PASS = _pg_credentials.get("pg_pass", None)
+PG_PORT = _pg_credentials.get("pg_port", None)
+PG_HOST = _pg_credentials.get("pg_host", None)
+PG_JOB_TASK_DB_NAME = _pg_credentials.get("pg_job_task_table", None)
+PG_RECORD_PYCSW_DB = _pg_credentials.get("pg_pycsw_record_table", None)
+PG_MAPPROXY_CONFIG = _pg_credentials.get("pg_mapproxy_table", None)
+PG_AGENT = _pg_credentials.get("pg_agent_table", None)
+
+_pg_schemas = conf.get("pg_schemas")
+DISCRETE_AGENT_DB = _pg_schemas.get("discrete_agent_db")
+HEARTBEAT_MANAGER = _pg_schemas.get("heartbeat_manager")
+JOB_MANGER = _pg_schemas.get("job_manager")
+LAYER_SPEC = _pg_schemas.get("layer_spec")
+MAPPROXY_CONFIG = _pg_schemas.get("mapproxy_config")
+RASTER_CATALOG = _pg_schemas.get("raster_catalog_manager")
+PUBLIC = _pg_schemas.get("public")
+LAYERS_LIST = ["danny", "danny3"]

@@ -32,16 +32,13 @@ class MyUser(HttpUser):
     else:
         print("Invalid wait function")
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(args, kwargs)
-        self.layers_tiles_ranges = None
-
     def on_start(self):
         self.layers_tiles_ranges = get_layers_data_pro_active()
 
     @task(1)
     def index(self):
         points = next(ssn_reader)
+        self.layers_tiles_ranges
         self.client.get(
             f"/{cfg.LAYER_TYPE}/{cfg.LAYER}/{cfg.GRIDNAME}/{points[0]}/{points[1]}/{points[2]}{cfg.IMAGE_FORMAT}?token={cfg.TOKEN}"
             , verify=False

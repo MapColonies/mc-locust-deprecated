@@ -1,21 +1,24 @@
+import json
+
 import mc_automation_tools.postgres
 from mc_automation_tools.common import get_environment_variable
 from mc_automation_tools import postgres
 from typing import List
-import config
-from mapproxy_layer import MapproxyLayer
+from common import config
+from mapproxy_layer import MapproxyLayer, zoom_level_convertor
 
 
-def zoom_level_validation(deg_value):
-    """
-    :param deg_value: float number that presents the resolution deg
-        :return: zoom level value : int
-        """
+# def zoom_level_validation(deg_value):
+#     """
+#     :param deg_value: float number that presents the resolution deg
+#         :return: zoom level value : int
+#         """
+#
+#     for zoom_level, deg in config.zoom_level_dict.items():
+#         if deg_value == deg:
+#             return zoom_level
+#     return None
 
-    for zoom_level, deg in config.zoom_level_dict.items():
-        if deg_value == deg:
-            return zoom_level
-    return None
 
 def get_layers_list(is_all_records=True) -> dict:
     """
@@ -80,7 +83,7 @@ def create_mapproxy_layer_objects(layers_data_list: list) -> list:
     for layer in layers_data_list:
         layer_bbox = convert_bbox_str_value_to_string(layer[1])
         zoom_deg = layer[0]
-        zoom_level = zoom_level_validation(deg_value=zoom_deg)
+        zoom_level = zoom_level_convertor(deg_value=zoom_deg)
         if not zoom_level:
             break
         mapproxy_objects.append(MapproxyLayer(zoom=zoom_level, product_bbox=layer_bbox, layer_id=layer[2]))
@@ -122,4 +125,7 @@ def get_layers_data_pro_active():
     layers_tiles_ranges = get_layers_tiles_ranges(layers_data_list=mapproxy_objects_list)
 
     return layers_tiles_ranges
+
+
+print(get_layers_data_pro_active())
 
