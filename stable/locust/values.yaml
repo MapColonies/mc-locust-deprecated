@@ -204,5 +204,5 @@ route:
     duration: 60s # supported units (us, ms, s, m, h, d)
 
 storage:
-  pvcName: local-sources-pvc
+  pvcName: ingestion-source-pvc
   subPath: ingestion-source
