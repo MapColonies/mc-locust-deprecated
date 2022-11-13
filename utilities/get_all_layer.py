@@ -1,5 +1,5 @@
 import json
-
+import itertools
 import mc_automation_tools.postgres
 from mc_automation_tools.common import get_environment_variable
 from mc_automation_tools import postgres
@@ -107,6 +107,27 @@ def get_layers_tiles_ranges(layers_data_list: List[MapproxyLayer]) -> list:
     return layers_tiles_ranges
 
 
+def create_tile_urls(x_range, y_range, zoom_ranges):
+    """
+    This method create tile url extension from tile ranges
+    :param x_range: tuple
+    :param y_range: tuple
+    :param zoom_ranges: tuple
+    :return: layer tiles options
+    """
+
+    x_tile_values = [*range(x_range[0], x_range[1] + 1, 1)]
+    y_tile_values = [*range(y_range[0], y_range[1] + 1, 1)]
+    zoom_tiles_values = [*range(zoom_ranges[0], zoom_ranges[1] +1, 1)]
+    optional_tiles_url = []
+    for element in itertools.product(x_tile_values, y_tile_values, zoom_tiles_values):
+        optional_tiles_url.append(element)
+    return list(itertools.product(x_tile_values, y_tile_values, zoom_tiles_values))
+
+
+create_tile_urls(x_range=(19, 20), y_range=(5, 6), zoom_ranges=(0, 4))
+
+
 def get_layers_data_pro_active():
     """
     This method returns list of selected layers tiles and zoom ranges for running locust users simulation
@@ -128,4 +149,3 @@ def get_layers_data_pro_active():
 
 
 print(get_layers_data_pro_active())
-

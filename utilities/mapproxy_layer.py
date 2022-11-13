@@ -86,11 +86,11 @@ class MapproxyLayer:
 
 
 # usage example
-x = MapproxyLayer(
-    "shay_165",
-    4,
-    [35.0884731109971, 31.7732841960024, 35.172258148995, 31.828506152999],
-)
-print(f"x_tile: {x.get_x_tile_ranges()}")
-print(f"y_tile: {x.get_y_tile_ranges()}")
-print(f"zoom: {x.get_zoom_range()}")
+# x = MapproxyLayer(
+#     "shay_165",
+#     4,
+#     [35.0884731109971, 31.7732841960024, 35.172258148995, 31.828506152999],
+# )
+# print(f"x_tile: {x.get_x_tile_ranges()}")
+# print(f"y_tile: {x.get_y_tile_ranges()}")
+# print(f"zoom: {x.get_zoom_range()}")
