@@ -72,6 +72,11 @@ spec:
         resources:
 {{ toYaml .Values.master.resources | indent 10 }}
         volumeMounts:
+          - name: ingestion-storage
+            mountPath: /layerSources
+            {{- if .Values.storage.subPath }}
+            subPath: {{ .Values.storage.subPath }}
+            {{- end }}
 #          {{- if .Values.loadtest.locust_locustfile_configmap}}
 #          - name: locustfile
 #            mountPath: "{{ .Values.loadtest.locust_locustfile_path }}"
@@ -147,6 +152,9 @@ spec:
 {{- end }}
       restartPolicy: {{ .Values.master.restartPolicy }}
       volumes:
+        - name: ingestion-storage
+          persistentVolumeClaim:
+            claimName: {{ .Values.storage.pvcName }}
         {{- if .Values.loadtest.locust_lib_configmap }}
         - name: lib
           configMap:

@@ -2,7 +2,7 @@ loadtest:
   # loadtest.name -- a name used for resources and settings in this load test
   name: locust-loadtest
   # loadtest.locust_locustfile -- the name of the locustfile
-  locust_locustfile: wmts_verify_false.py
+  locust_locustfile: pv_checker.py
   # loadtest.locust_locustfile_path -- the path of the locustfile (without trailing backslash)
   locust_locustfile_path: "/mnt/locust/tests"
   # loadtest.locust_locustfile_configmap -- name of a configmap containing your locustfile (default uses the example locustfile)
@@ -202,3 +202,7 @@ route:
   timeout:
     enabled: false # defaults to 30s by openshift
     duration: 60s # supported units (us, ms, s, m, h, d)
+
+storage:
+  pvcName: local-sources-pvc
+  subPath: ingestion-source
