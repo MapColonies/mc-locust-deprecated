@@ -6,9 +6,9 @@ from mc_automation_tools import common
 WMTS_CSV_PATH = os.environ.get("csv_path", "csv_data/data/wmts_csv_user.csv")
 
 # WMTS Parameters
-LAYER = os.environ.get("layer", "OrthophotoHistory")
+LAYER = os.environ.get("layer", "Orthophoto")
 LAYER_TYPE = os.environ.get("layer_type", "wmts")
-GRIDNAME = os.environ.get("gridName", "default")
+GRIDNAME = os.environ.get("gridName", "newGrids")
 VERSION = os.environ.get("version", "2.0.2")
 PROJECTION = os.environ.get("projection", "newGrids")
 IMAGE_FORMAT = os.environ.get("imageType", ".png")
@@ -127,7 +127,7 @@ LAYER_SPEC = _pg_schemas.get("layer_spec")
 MAPPROXY_CONFIG = _pg_schemas.get("mapproxy_config")
 RASTER_CATALOG = _pg_schemas.get("raster_catalog_manager")
 PUBLIC = _pg_schemas.get("public")
-LAYERS_LIST = ["danny", "danny3"]
+LAYERS_LIST = ["shay_165"]
 
 # _pv_routes = conf.get("pvc_routes")
 # pvc_root_directory = _pv_routes.get("pvc_root_directory")

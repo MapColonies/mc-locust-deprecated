@@ -1,5 +1,4 @@
 import logging
-import time
 
 from locust import between
 from locust import constant
@@ -7,11 +6,9 @@ from locust import constant_pacing
 from locust import constant_throughput
 from locust import HttpUser
 from locust import task
-from locust_plugins import StopUser
 from locust_plugins.csvreader import CSVReader
 
 import common.config as cfg
-from utilities.mapproxy_layer import MapproxyLayer
 
 logging.error("Reading CSV file")
 ssn_reader = CSVReader("csv_data/data/new.csv")

@@ -1,19 +1,28 @@
 import logging
-import time
+import sys
+import os
+
+myDir = os.getcwd()
+sys.path.append(myDir)
+
+from pathlib import Path
+
+path = Path(myDir)
+a = str(path.parent.absolute())
+
+sys.path.append(a)
 from locust import between
 from locust import constant
 from locust import constant_pacing
 from locust import constant_throughput
 from locust import HttpUser
 from locust import task
-from locust_plugins import StopUser
 from locust_plugins.csvreader import CSVReader
 
 import common.config as cfg
-from utilities.get_all_layer import get_layers_data_pro_active
+from utilities.get_all_layer import create_layers_urls
 
 logging.error("Reading CSV file")
-ssn_reader = CSVReader("csv_data/data/wmts_shaziri.csv")
 
 
 class MyUser(HttpUser):
@@ -33,16 +42,13 @@ class MyUser(HttpUser):
         print("Invalid wait function")
 
     def on_start(self):
-        self.layers_tiles_ranges = get_layers_data_pro_active()
+        self.layers_tiles_urls = create_layers_urls()
 
     @task(1)
     def index(self):
-        points = next(ssn_reader)
-        self.layers_tiles_ranges
-        self.client.get(
-            f"/{cfg.LAYER_TYPE}/{cfg.LAYER}/{cfg.GRIDNAME}/{points[0]}/{points[1]}/{points[2]}{cfg.IMAGE_FORMAT}?token={cfg.TOKEN}"
-            , verify=False
-        )
+        for layer_urls in self.layers_tiles_urls:
+            for tile_url in layer_urls:
+                self.client.get(f"{tile_url}", verify=False)
 
     # with self.client.get(
     #       f"/{cfg.LAYER_TYPE}/{cfg.LAYER}/{cfg.GRIDNAME}/{points[0]}/{points[1]}/{points[2]}{cfg.IMAGE_FORMAT}?
