@@ -4,25 +4,23 @@ import os
 
 myDir = os.getcwd()
 sys.path.append(myDir)
-
 from pathlib import Path
 
 path = Path(myDir)
 a = str(path.parent.absolute())
-
 sys.path.append(a)
+
 from locust import between
 from locust import constant
 from locust import constant_pacing
 from locust import constant_throughput
 from locust import HttpUser
 from locust import task
-from locust_plugins.csvreader import CSVReader
-
 import common.config as cfg
 from utilities.get_all_layer import create_layers_urls
 
-logging.error("Reading CSV file")
+
+# logging.error("Reading CSV file")
 
 
 class MyUser(HttpUser):
@@ -46,14 +44,9 @@ class MyUser(HttpUser):
 
     @task(1)
     def index(self):
+
         for layer_urls in self.layers_tiles_urls:
             for tile_url in layer_urls:
                 self.client.get(f"{tile_url}", verify=False)
 
-    # with self.client.get(
-    #       f"/{cfg.LAYER_TYPE}/{cfg.LAYER}/{cfg.GRIDNAME}/{points[0]}/{points[1]}/{points[2]}{cfg.IMAGE_FORMAT}?
-    #       # ,verify=False,
-    #   ) as response:
-    #       if response.text != "Success":
-    #           print("continue")
     host = cfg.HOST

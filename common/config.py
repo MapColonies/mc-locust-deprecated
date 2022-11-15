@@ -34,8 +34,13 @@ PYCSW_POLYGON_VALUE = os.environ.get("mc_polygon_value", "")
 
 # Locust Settings (Parameters)
 PORT = os.environ.get("port", "80")
-HOST = os.environ.get(
-    "HOST", "https://pycsw-qa-pycsw-route-raster.apps.v0h0bdx6.eastus.aroapp.io/")
+# HOST = os.environ.get(
+#     "HOST", "https://pycsw-qa-pycsw-route-raster.apps.v0h0bdx6.eastus.aroapp.io/")
+
+HOST =os.environ.get(
+    "HOST",
+    "https://mapproxy-raster-qa-mapproxy-route-raster-qa.apps.j1lk3njp.eastus.aroapp.io/api/raster/v1")
+
 
 TOKEN = os.environ.get("SECRET_VALUE_API")
 # REQUEST_HEADER = {

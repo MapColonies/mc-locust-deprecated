@@ -12,17 +12,6 @@ from common import config
 from utilities.mapproxy_layer import MapproxyLayer, zoom_level_convertor
 
 
-# def zoom_level_validation(deg_value):
-#     """
-#     :param deg_value: float number that presents the resolution deg
-#         :return: zoom level value : int
-#         """
-#
-#     for zoom_level, deg in config.zoom_level_dict.items():
-#         if deg_value == deg:
-#             return zoom_level
-#     return None
-
 
 def get_layers_list(is_all_records=True) -> dict:
     """
@@ -33,7 +22,6 @@ def get_layers_list(is_all_records=True) -> dict:
     if not is_all_records:
         try:
             layer_list = config.LAYERS_LIST
-            print(layer_list)
             if layer_list:
                 return {"all_records": is_all_records, "layer_list": layer_list}
         except Exception as e:
@@ -42,7 +30,7 @@ def get_layers_list(is_all_records=True) -> dict:
 
 
 def get_all_layers_tiles_data(db_name=config.PG_RECORD_PYCSW_DB):
-    """This method query and return all layer bbox and zoom level values from the records table"""
+    """This method query and return all layer bbox and zoom create_layers_urlslevel values from the records table"""
     client = postgres.PGClass(config.PG_HOST, db_name, config.PG_USER, config.PG_PASS, config.RASTER_CATALOG,
                               port=int(config.PG_PORT))
     columns_names = """
@@ -107,27 +95,27 @@ def get_layers_tiles_ranges(layers_data_list: List[MapproxyLayer]) -> list:
         ranges_values["layer_id"] = mapproxy_obj.get_layer_id
         ranges_values["x_ranges"] = mapproxy_obj.get_x_tile_ranges()
         ranges_values["y_ranges"] = mapproxy_obj.get_y_tile_ranges()
-        ranges_values["zoom_ranges"] = mapproxy_obj.get_zoom_range()
+        ranges_values["zoom_value"] = mapproxy_obj.zoom
         layers_tiles_ranges.append(ranges_values)
     return layers_tiles_ranges
 
 
-def create_zyx_tiles_structure(zoom_ranges: tuple, y_range: tuple, x_range: tuple):
+def create_zyx_tiles_structure(zoom_value: int, y_range: tuple, x_range: tuple):
     """
     This method create tile url extension from tile ranges
     :param x_range: tuple of the x ranges values
     :param y_range: tuple of the y ranges values
-    :param zoom_ranges: tuple of the zoom ranges values
-    :return: layer tiles options
+    :param zoom_value: tuple of the zoom ranges values
+    :return: layer tiles options list
     """
 
     x_tile_values = [*range(x_range[0], x_range[1] + 1, 1)]
     y_tile_values = [*range(y_range[0], y_range[1] + 1, 1)]
-    zoom_tiles_values = [*range(zoom_ranges[0] + 1, zoom_ranges[1] + 1, 1)]
+    zoom_tiles_value = [zoom_value]
     # optional_tiles_url = []
     # for element in itertools.product(zoom_tiles_values, y_tile_values, x_tile_values):
     #     optional_tiles_url.append(element)
-    return list(itertools.product(zoom_tiles_values, y_tile_values, x_tile_values))
+    return list(itertools.product(zoom_tiles_value, x_tile_values, y_tile_values))
 
 
 def create_layer_tiles_urls(layer_name, tiles_list: List[tuple]):
@@ -168,21 +156,19 @@ def get_layers_data_pro_active():
 
 def create_layers_urls() -> list:
     """
-    This method return a list of layres tiles urls for the proactive task
+    This method return a list of layers tiles urls for the proactive task
     :return:
     layers_url_list: list of all layers tiles
     """
     layers_urls = []
     layers_ranges = get_layers_data_pro_active()
     for layers_range in layers_ranges:
-        z_y_x_structure = create_zyx_tiles_structure(zoom_ranges=layers_range['zoom_ranges'],
+        z_y_x_structure = create_zyx_tiles_structure(zoom_value=layers_range['zoom_value'],
                                                      y_range=layers_range['y_ranges'], x_range=layers_range['x_ranges'])
         layer_url = create_layer_tiles_urls(layers_range['layer_id'], z_y_x_structure)
         layers_urls.append(layer_url)
-
     return layers_urls
 
-
-# print(len(get_layers_data_pro_active()))
-# x = create_layers_urls()
-# print(x[0][0])
+# # print(get_layers_data_pro_active())
+x = create_layers_urls()
+print(x[0][0])

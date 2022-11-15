@@ -27,7 +27,7 @@ class Range:
 class MapproxyLayer:
     def __init__(self, layer_id: str, zoom: int, product_bbox: list):
         self.layer_id = layer_id
-        self.zoom_deg = zoom
+        self.zoom = zoom
         self.bbox = product_bbox
 
     @property
@@ -52,7 +52,7 @@ class MapproxyLayer:
 
     @property
     def zoom_level(self) -> int:
-        return self.zoom_deg
+        return self.zoom
 
     @property
     def deg_per_tile(self):
