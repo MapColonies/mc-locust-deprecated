@@ -44,7 +44,6 @@ class MyUser(HttpUser):
 
     @task(1)
     def index(self):
-
         for layer_urls in self.layers_tiles_urls:
             for tile_url in layer_urls:
                 self.client.get(f"{tile_url}", verify=False)

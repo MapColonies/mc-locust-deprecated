@@ -12,10 +12,10 @@ from common import config
 from utilities.mapproxy_layer import MapproxyLayer, zoom_level_convertor
 
 
-
-def get_layers_list(is_all_records=True) -> dict:
+def get_layers_list(is_all_records: bool = True) -> dict:
     """
     This method returns layer list for querying
+    params: is_all_records flag - indicate if query all records from the db or not
     :return:
     list of layers names
     """
@@ -30,7 +30,7 @@ def get_layers_list(is_all_records=True) -> dict:
 
 
 def get_all_layers_tiles_data(db_name=config.PG_RECORD_PYCSW_DB):
-    """This method query and return all layer bbox and zoom create_layers_urlslevel values from the records table"""
+    """This method query and return all layer bbox and zoom level values from the records table"""
     client = postgres.PGClass(config.PG_HOST, db_name, config.PG_USER, config.PG_PASS, config.RASTER_CATALOG,
                               port=int(config.PG_PORT))
     columns_names = """
@@ -169,6 +169,7 @@ def create_layers_urls() -> list:
         layers_urls.append(layer_url)
     return layers_urls
 
+
 # # print(get_layers_data_pro_active())
-x = create_layers_urls()
-print(x[0][0])
+# x = create_layers_urls()
+# print(x[0][0])
