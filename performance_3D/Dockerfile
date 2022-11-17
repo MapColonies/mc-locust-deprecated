@@ -5,4 +5,3 @@ WORKDIR /mnt/shay
 COPY . /mnt/shay
 
 CMD ["python", "./extract_url.py"]
-

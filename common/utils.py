@@ -1,5 +1,6 @@
-from typing import Iterable
 from itertools import product
+from typing import Iterable
+
 import config as cfg
 
 
@@ -99,7 +100,8 @@ create_tiles_url_order([0, 4], [5, 6], [19, 20])
 #             return next(self.points)
 
 import glob, os
-filelist = glob.glob('D:\Train\*.jpg')
+
+filelist = glob.glob(r"D:\Train\*.jpg")
 print(len(filelist))
 for file in filelist:
     print(file)

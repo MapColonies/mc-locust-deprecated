@@ -1,6 +1,6 @@
 import logging
-import sys
 import os
+import sys
 
 myDir = os.getcwd()
 sys.path.append(myDir)

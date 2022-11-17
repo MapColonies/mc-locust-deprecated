@@ -1,7 +1,9 @@
-from math import floor
-from typing import Optional, Tuple
-import common.config
 import math
+from math import floor
+from typing import Optional
+from typing import Tuple
+
+import common.config
 
 
 def zoom_level_convertor(deg_value: float) -> Optional[int]:
@@ -65,9 +67,9 @@ class MapproxyLayer:
 
     def get_y_tile_ranges(self) -> Tuple[int, int]:
         min_tile_y = (
-                pow(2, self.zoom_level)
-                - floor((self.max_y_deg + 90) / self.deg_per_tile)
-                - 1
+            pow(2, self.zoom_level)
+            - floor((self.max_y_deg + 90) / self.deg_per_tile)
+            - 1
         )
         max_tile_y = pow(2, self.zoom_level) - floor(
             (self.min_y_deg + 90) / self.deg_per_tile

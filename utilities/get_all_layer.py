@@ -1,5 +1,5 @@
-import sys
 import os
+import sys
 
 myDir = os.getcwd()
 sys.path.append(myDir)
@@ -31,8 +31,14 @@ def get_layers_list(is_all_records: bool = True) -> dict:
 
 def get_all_layers_tiles_data(db_name=config.PG_RECORD_PYCSW_DB):
     """This method query and return all layer bbox and zoom level values from the records table"""
-    client = postgres.PGClass(config.PG_HOST, db_name, config.PG_USER, config.PG_PASS, config.RASTER_CATALOG,
-                              port=int(config.PG_PORT))
+    client = postgres.PGClass(
+        config.PG_HOST,
+        db_name,
+        config.PG_USER,
+        config.PG_PASS,
+        config.RASTER_CATALOG,
+        port=int(config.PG_PORT),
+    )
     columns_names = """
      max_resolution_deg , product_bbox , product_id
     """
@@ -50,12 +56,22 @@ def get_layer_list_tile_data(layer_list, db_name=config.PG_RECORD_PYCSW_DB):
     columns_names = """
      max_resolution_deg , product_bbox , product_id
     """
-    client = postgres.PGClass(config.PG_HOST, db_name, config.PG_USER, config.PG_PASS, config.RASTER_CATALOG,
-                              port=int(config.PG_PORT))
+    client = postgres.PGClass(
+        config.PG_HOST,
+        db_name,
+        config.PG_USER,
+        config.PG_PASS,
+        config.RASTER_CATALOG,
+        port=int(config.PG_PORT),
+    )
     layers_data_list = []
     for layer_name in layer_list:
-        res = client.get_columns_by_pk_equality(columns=columns_names, table_name="records", pk="product_id",
-                                                pk_value=layer_name)
+        res = client.get_columns_by_pk_equality(
+            columns=columns_names,
+            table_name="records",
+            pk="product_id",
+            pk_value=layer_name,
+        )
         layers_data_list.append(res)
 
     return layers_data_list
@@ -79,7 +95,9 @@ def create_mapproxy_layer_objects(layers_data_list: list) -> list:
         zoom_level = zoom_level_convertor(deg_value=zoom_deg)
         if not zoom_level:
             break
-        mapproxy_objects.append(MapproxyLayer(zoom=zoom_level, product_bbox=layer_bbox, layer_id=layer[2]))
+        mapproxy_objects.append(
+            MapproxyLayer(zoom=zoom_level, product_bbox=layer_bbox, layer_id=layer[2])
+        )
     return mapproxy_objects
 
 
@@ -142,11 +160,17 @@ def get_layers_data_pro_active():
     if layers_list_res["all_records"] is True:
         layers_tiles_data = get_all_layers_tiles_data()
     else:
-        layers_tiles_data = get_layer_list_tile_data(layer_list=layers_list_res["layer_list"])
+        layers_tiles_data = get_layer_list_tile_data(
+            layer_list=layers_list_res["layer_list"]
+        )
 
-    mapproxy_objects_list = create_mapproxy_layer_objects(layers_data_list=layers_tiles_data)
+    mapproxy_objects_list = create_mapproxy_layer_objects(
+        layers_data_list=layers_tiles_data
+    )
 
-    layers_tiles_ranges = get_layers_tiles_ranges(layers_data_list=mapproxy_objects_list)
+    layers_tiles_ranges = get_layers_tiles_ranges(
+        layers_data_list=mapproxy_objects_list
+    )
 
     return layers_tiles_ranges
 
@@ -163,9 +187,12 @@ def create_layers_urls() -> list:
     layers_urls = []
     layers_ranges = get_layers_data_pro_active()
     for layers_range in layers_ranges:
-        z_y_x_structure = create_zyx_tiles_structure(zoom_value=layers_range['zoom_value'],
-                                                     y_range=layers_range['y_ranges'], x_range=layers_range['x_ranges'])
-        layer_url = create_layer_tiles_urls(layers_range['layer_id'], z_y_x_structure)
+        z_y_x_structure = create_zyx_tiles_structure(
+            zoom_value=layers_range["zoom_value"],
+            y_range=layers_range["y_ranges"],
+            x_range=layers_range["x_ranges"],
+        )
+        layer_url = create_layer_tiles_urls(layers_range["layer_id"], z_y_x_structure)
         layers_urls.append(layer_url)
     return layers_urls
 

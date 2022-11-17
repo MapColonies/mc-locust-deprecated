@@ -119,14 +119,16 @@ class SizingUser(HttpUser):
     @task(1)
     def get_records_by_polygon(self):
         r1 = self.client.post(
-            "/", data=POLYGON_XML.encode("UTF-8"),
+            "/",
+            data=POLYGON_XML.encode("UTF-8"),
             # headers=cfg.REQUEST_HEADER
         )
 
     @task(2)
     def get_records_by_id(self):
         r2 = self.client.post(
-            "/", data=ID_RECORD_XML.encode("UTF-8"),
+            "/",
+            data=ID_RECORD_XML.encode("UTF-8"),
             # headers=cfg.REQUEST_HEADER
         )
         # print(r2.text)
@@ -134,7 +136,8 @@ class SizingUser(HttpUser):
     @task(3)
     def get_records_by_region(self):
         r3 = self.client.post(
-            "/", data=REGION_RECORD_XML.encode("UTF-8"),
+            "/",
+            data=REGION_RECORD_XML.encode("UTF-8"),
             # headers=cfg.REQUEST_HEADER
         )
 

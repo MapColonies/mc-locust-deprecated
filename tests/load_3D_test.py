@@ -1,6 +1,6 @@
 import logging
-import sys
 import os
+import sys
 
 myDir = os.getcwd()
 sys.path.append(myDir)
@@ -47,9 +47,6 @@ class MyUser(HttpUser):
     @task(1)
     def index(self):
         url = next(ssn_reader)
-        self.client.get(
-            url=url[1]
-            , verify=False
-        )
+        self.client.get(url=url[1], verify=False)
 
     host = cfg.HOST

@@ -1,5 +1,6 @@
 import json
 import os
+
 from mc_automation_tools import common
 
 # Files Parameters
@@ -39,7 +40,8 @@ PORT = os.environ.get("port", "80")
 
 HOST = os.environ.get(
     "HOST",
-    "https://mapproxy-raster-qa-mapproxy-route-raster-qa.apps.j1lk3njp.eastus.aroapp.io/api/raster/v1")
+    "https://mapproxy-raster-qa-mapproxy-route-raster-qa.apps.j1lk3njp.eastus.aroapp.io/api/raster/v1",
+)
 
 TOKEN = os.environ.get("SECRET_VALUE_API")
 # REQUEST_HEADER = {
@@ -131,7 +133,7 @@ LAYER_SPEC = _pg_schemas.get("layer_spec")
 MAPPROXY_CONFIG = _pg_schemas.get("mapproxy_config")
 RASTER_CATALOG = _pg_schemas.get("raster_catalog_manager")
 PUBLIC = _pg_schemas.get("public")
-LAYERS_LIST = ["test-update","shay_165", "JAKSHD-2122K-ASDKGBV-4KD4S9X"]
+LAYERS_LIST = ["test-update", "shay_165", "JAKSHD-2122K-ASDKGBV-4KD4S9X"]
 
 # _pv_routes = conf.get("pvc_routes")
 # pvc_root_directory = _pv_routes.get("pvc_root_directory")

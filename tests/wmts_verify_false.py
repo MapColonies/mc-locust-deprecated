@@ -18,7 +18,6 @@ ssn_reader = CSVReader("csv_data/data/wmts_shaziri.csv")
 
 class MyUser(HttpUser):
 
-
     if cfg.WAIT_FUNCTION == 1:
         wait_time = constant(cfg.WAIT_TIME)
         print("Choosing constant wait time")
@@ -44,4 +43,5 @@ class MyUser(HttpUser):
             # ,verify=False,
         ) as r:
             print(r.text)
+
     host = cfg.HOST

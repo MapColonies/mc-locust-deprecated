@@ -16,6 +16,7 @@
 #     print(l)
 import json
 
+import glom
 
 # def json_extract(obj, key):
 #     """Recursively fetch values from nested JSON."""
@@ -36,16 +37,13 @@ import json
 #
 #     values = extract(obj, arr, key)
 #     return values
-import glom
 
 with open("/home/shayavr/Downloads/shay_example.json", "r") as f:
     data_to_extract = json.load(f)
     print(data_to_extract)
 
 
-urls = glom(data_to_extract, f )
-
-
+urls = glom(data_to_extract, f)
 
 
 #
