@@ -12,7 +12,7 @@ from locust import task
 from locust import TaskSet
 from locust import User
 
-from common.utils import WMTSIterator
+# from common.utils import WMTSIterator
 
 
 # ssn_reader = [WMTSIterator(1, 5+1), WMTSIterator(5, 10), WMTSIterator(10, 15)]
@@ -54,7 +54,7 @@ class MyTaskSet(TaskSet):
     def fast(self):
         self.client.get("/", name="fast_check")
         # points_1 = next(ssn_reader)
-        shuffle(lst)
+        # shuffle(lst)
         print(lst[0])
         # points_2 = next(ssn_reader[1])
         # points_3 = next(ssn_reader[2])
@@ -69,5 +69,5 @@ class MyTaskSet(TaskSet):
 
 
 class MyLocust(HttpUser):
-    wait_time = constant(30)
+    wait_time = constant(5)
     tasks = [MyTaskSet]
