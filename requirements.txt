@@ -1,8 +1,12 @@
 Js2Py==0.71
-locust
+locust~=2.8.6
 locust_plugins
 pandas~=1.4.2
 requests~=2.27.1
 setuptools~=60.2.0
 wheel
 xmltodict~=0.13.0
+common~=0.1.2
+pymongo~=4.2.0
+glom~=22.1.0
+gevent~=21.12.0
