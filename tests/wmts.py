@@ -10,7 +10,6 @@ from locust_plugins.csvreader import CSVReader
 
 import common.config as cfg
 
-logging.error("Reading CSV file")
 ssn_reader = CSVReader("csv_data/data/new.csv")
 # print(cfg.PRO_ACTIVE_WMTS_BBOX)
 # x = MapproxyLayer(

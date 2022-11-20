@@ -1,3 +1,4 @@
+---
 loadtest:
   # loadtest.name -- a name used for resources and settings in this load test
   name: locust-loadtest
