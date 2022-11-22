@@ -60,11 +60,21 @@
 # WORKDIR /locust
 
 
-FROM locustio/locust:2.12.1
-RUN pip3 install pandas
-RUN pip3 install locust_plugins
-RUN pip3 install xmltodict
-RUN #pip3 install mc-automation-tools
+FROM locustio/locust:2.10.0
+
+
+RUN pip install --upgrade pip
+
+
+
+RUN pip install --upgrade setuptools_scm wheel virtualenv
+
+
+RUN pip install pandas
+RUN pip install locust_plugins
+RUN pip install xmltodict
+RUN pip install --upgrade setuptools
+RUN pip install mc-automation-tools
 # RUN pip3 install locust
 
 # COPY . /mnt/locust/
@@ -72,7 +82,10 @@ RUN #pip3 install mc-automation-tools
 WORKDIR /mnt/locust
 
 COPY . /mnt/locust/
-RUN #pip3 install -r requirements.txt
+
+
+#RUN . /source_code/venv/bin/activate
+
 # EXPOSE 8089 5557 5558
 # ENTRYPOINT ["/docker-entrypoint.sh"]
 
