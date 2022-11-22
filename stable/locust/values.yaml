@@ -31,6 +31,7 @@ loadtest:
       layer: "bluemarble-dani-mumhui-Orthophoto",
       users: 15,
       port: 8080,
+      CONF_FILE: "",
       layer_type: "wmts",
       test_to_run: "Lateron",
       sub_url_for_pycsw: "https://catalog-qa-raster-catalog-pycsw-route-raster.apps.v0h0bdx6.eastus.aroapp.io/",
