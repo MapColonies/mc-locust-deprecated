@@ -64,6 +64,7 @@ FROM locustio/locust:2.12.1
 RUN pip3 install pandas
 RUN pip3 install locust_plugins
 RUN pip3 install xmltodict
+RUN #pip3 install mc-automation-tools
 # RUN pip3 install locust
 
 # COPY . /mnt/locust/
@@ -71,7 +72,7 @@ RUN pip3 install xmltodict
 WORKDIR /mnt/locust
 
 COPY . /mnt/locust/
-
+RUN #pip3 install -r requirements.txt
 # EXPOSE 8089 5557 5558
 # ENTRYPOINT ["/docker-entrypoint.sh"]
 
