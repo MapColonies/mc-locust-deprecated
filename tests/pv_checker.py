@@ -10,7 +10,7 @@ from locust import task
 from locust_plugins import StopUser
 from locust_plugins.csvreader import CSVReader
 from locust import constant
-import common.config as cfg
+# import common.config as cfg
 from utilities.mapproxy_layer import MapproxyLayer
 
 logging.error("Reading CSV file")
@@ -59,4 +59,4 @@ class MyUser(HttpUser):
         #     # headers=cfg.REQUEST_HEADER,
         # )
 
-    host = cfg.HOST
+    # host = cfg.HOST
