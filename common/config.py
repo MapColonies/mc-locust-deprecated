@@ -5,7 +5,7 @@ from mc_automation_tools import common
 
 # Files Parameters
 WMTS_CSV_PATH = os.environ.get("csv_path", "csv_data/data/wmts_csv_user.csv")
-
+CSV_PATH_3D = os.environ.get("csv_3d_path", "/layerSources/locust_configuration.json")
 # WMTS Parameters
 LAYER = os.environ.get("layer", "Orthophoto")
 LAYER_TYPE = os.environ.get("layer_type", "wmts")

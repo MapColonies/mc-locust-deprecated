@@ -21,11 +21,11 @@ from locust_plugins.csvreader import CSVReader
 import common.config as cfg
 from common import config
 
-logging.error("Reading CSV file")
+
 # pvc_url = cfg.PVC_HANDLER_ROUTE
 # response_param = requests.get(url=f'http://{pvc_url}{config.UPDATE_LAYER_DATA_DIR}/',
 #                               params={'file': layers_name})
-ssn_reader = CSVReader("/home/shayavr/Desktop/git/automation-locust/urls_data.csv")
+ssn_reader = CSVReader(cfg.CSV_PATH_3D)
 
 
 class MyUser(HttpUser):
