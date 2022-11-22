@@ -10,3 +10,4 @@ common~=0.1.2
 pymongo~=4.2.0
 glom~=22.1.0
 gevent~=21.12.0
+mc-automation-tools
