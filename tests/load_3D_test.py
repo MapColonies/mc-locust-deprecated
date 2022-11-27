@@ -1,15 +1,6 @@
 import logging
 import os
 import sys
-
-myDir = os.getcwd()
-sys.path.append(myDir)
-from pathlib import Path
-
-path = Path(myDir)
-a = str(path.parent.absolute())
-sys.path.append(a)
-
 import requests
 from locust import between
 from locust import constant
@@ -20,6 +11,15 @@ from locust import task
 from locust_plugins.csvreader import CSVReader
 import common.config as cfg
 from common import config
+
+myDir = os.getcwd()
+sys.path.append(myDir)
+from pathlib import Path
+
+path = Path(myDir)
+a = str(path.parent.absolute())
+sys.path.append(a)
+
 
 
 # pvc_url = cfg.PVC_HANDLER_ROUTE
