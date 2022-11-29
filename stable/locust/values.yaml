@@ -199,6 +199,7 @@ storage:
   pvcName: ingestion-source-pvc
   subPath: ingestion-source
 
+# Change ports name and delete not relevant.
 ports:
   mapProxy:
     port: 80
