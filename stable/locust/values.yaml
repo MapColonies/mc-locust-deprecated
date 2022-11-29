@@ -198,3 +198,19 @@ route:
 storage:
   pvcName: ingestion-source-pvc
   subPath: ingestion-source
+
+ports:
+  mapProxy:
+    port: 80
+    uwsgiPort: 3031
+    targetPort: 8080
+    uwsgiProcesses: 5
+  mapProxyApi:
+    port: 80
+    targetPort: 8080
+  mapproxinator:
+    port: 80
+    targetPort: 8081
+  nginx:
+    port: 80
+    nginxTargetPort: 8080
