@@ -48,3 +48,4 @@ def get_percentile_value(rsp_counter: float, rsp_time_list: list):
     """
     percentile_value = rsp_counter / len(rsp_time_list) * 100
     return percentile_value
+
