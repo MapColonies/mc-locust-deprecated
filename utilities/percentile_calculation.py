@@ -1,4 +1,6 @@
 import csv
+import json
+import os
 
 
 def extract_response_time_from_record(csv_path: str):
@@ -31,9 +33,20 @@ def convert_to_millisecond(response_time_list: list):
 
 
 def count_rsp_time_by_rsp_time_ranges(rsp_time_data: list, rsp_range: tuple):
+    """
+    This function check the number of the request of the given rsp time range
+    :param rsp_time_data: list of rsp time from requests records
+    :param rsp_range: the selected range of rsp time to count
+    :return:
+    rsp_counter - total number of requests with rsp time on the selected range
+    """
     rsp_counter = 0
     for rsp_time in rsp_time_data:
-        if rsp_range[0] <= rsp_time <= rsp_range[1]:
+        print(rsp_time)
+        if rsp_range[1] is None:
+            if rsp_range[0] <= rsp_time:
+                rsp_counter += 1
+        elif rsp_range[0] <= rsp_time <= rsp_range[1]:
             rsp_counter += 1
     return rsp_counter
 
@@ -48,4 +61,25 @@ def get_percentile_value(rsp_counter: float, rsp_time_list: list):
     """
     percentile_value = rsp_counter / len(rsp_time_list) * 100
     return percentile_value
+
+
+def write_rsp_time_percentile_ranges(percentile_value: dict):
+    json_obj = json.dumps(percentile_value)
+    with open(f"{os.getcwd()}/rsp_time_percentile_ranges.json", 'w') as f:
+        f.write(json_obj)
+
+
+rsp_list = extract_response_time_from_record(csv_path="/home/shayavr/Desktop/git/automation-locust/tests/stats.csv")
+print(rsp_list)
+rsp_list_millisecond = convert_to_millisecond(response_time_list=rsp_list)
+print(rsp_list_millisecond)
+percentile_rages_dict = {}
+rsp_time_ranges = [(0, 100), (101 , 500), (501, None)]
+print(rsp_time_ranges)
+for idx, rsp_t_range in rsp_time_ranges:
+    counter = count_rsp_time_by_rsp_time_ranges(rsp_time_data=rsp_list_millisecond, rsp_range=rsp_t_range)
+    print(counter, "---------------counter-----------------")
+    percentile = get_percentile_value(rsp_counter=counter, rsp_time_list=rsp_list_millisecond)
+    percentile_rages_dict[str(rsp_time_ranges[idx])] = percentile
+write_rsp_time_percentile_ranges(percentile_rages_dict)
 
