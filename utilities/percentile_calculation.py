@@ -14,7 +14,7 @@ def extract_response_time_from_record(csv_path: str):
     with open(csv_path, 'r') as f:
         reader = csv.reader(f, delimiter=';')
         for row in reader:
-            response_time_list.append(row[2])
+            response_time_list.append(float(row[3]))
     return response_time_list
 
 
@@ -28,7 +28,7 @@ def convert_to_millisecond(response_time_list: list):
     """
     rsp_millisecond = []
     for rsp_time in response_time_list:
-        rsp_millisecond.append(rsp_time * 1000)
+        rsp_millisecond.append(float(rsp_time) * 1000)
     return rsp_millisecond
 
 
@@ -70,15 +70,13 @@ def write_rsp_time_percentile_ranges(percentile_value: dict):
 
 
 rsp_list = extract_response_time_from_record(csv_path="/home/shayavr/Desktop/git/automation-locust/tests/stats.csv")
-print(rsp_list)
+
 rsp_list_millisecond = convert_to_millisecond(response_time_list=rsp_list)
-print(rsp_list_millisecond)
 percentile_rages_dict = {}
 rsp_time_ranges = [(0, 100), (101 , 500), (501, None)]
-print(rsp_time_ranges)
-for idx, rsp_t_range in rsp_time_ranges:
+for idx, rsp_t_range in enumerate(rsp_time_ranges):
     counter = count_rsp_time_by_rsp_time_ranges(rsp_time_data=rsp_list_millisecond, rsp_range=rsp_t_range)
-    print(counter, "---------------counter-----------------")
+
     percentile = get_percentile_value(rsp_counter=counter, rsp_time_list=rsp_list_millisecond)
     percentile_rages_dict[str(rsp_time_ranges[idx])] = percentile
 write_rsp_time_percentile_ranges(percentile_rages_dict)
