@@ -196,7 +196,6 @@ def create_layers_urls() -> list:
         layers_urls.append(layer_url)
     return layers_urls
 
-
 # # print(get_layers_data_pro_active())
 # x = create_layers_urls()
 # print(x[0][0])
