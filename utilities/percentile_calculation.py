@@ -1,7 +1,14 @@
 import csv
 import json
 import os
-
+import sys
+myDir = os.getcwd()
+sys.path.append(myDir)
+from pathlib import Path
+path = Path(myDir)
+a = str(path.parent.absolute())
+sys.path.append(a)
+import common.config as cfg
 
 def extract_response_time_from_record(csv_path: str):
     """
@@ -17,19 +24,6 @@ def extract_response_time_from_record(csv_path: str):
             response_time_list.append(float(row[3]))
     return response_time_list
 
-
-def convert_to_millisecond(response_time_list: list):
-    """
-    This function gets a list of request response times in seconds
-     and convert this list to a millisecond
-    :param response_time_list: list of response time in seconds
-    :return:
-    rsp_millisecond: list of response time in millisecond
-    """
-    rsp_millisecond = []
-    for rsp_time in response_time_list:
-        rsp_millisecond.append(float(rsp_time) * 1000)
-    return rsp_millisecond
 
 
 def count_rsp_time_by_rsp_time_ranges(rsp_time_data: list, rsp_range: tuple):
@@ -65,19 +59,19 @@ def get_percentile_value(rsp_counter: float, rsp_time_list: list):
 
 def write_rsp_time_percentile_ranges(percentile_value: dict):
     json_obj = json.dumps(percentile_value)
-    with open(f"{os.getcwd()}/rsp_time_percentile_ranges.json", 'w') as f:
+    with open(f"{cfg.ROOT_DIR}/rsp_time_percentile_ranges.json", 'w') as f:
         f.write(json_obj)
 
-
-rsp_list = extract_response_time_from_record(csv_path="/home/shayavr/Desktop/git/automation-locust/tests/stats.csv")
-
-rsp_list_millisecond = convert_to_millisecond(response_time_list=rsp_list)
-percentile_rages_dict = {}
-rsp_time_ranges = [(0, 100), (101 , 500), (501, None)]
-for idx, rsp_t_range in enumerate(rsp_time_ranges):
-    counter = count_rsp_time_by_rsp_time_ranges(rsp_time_data=rsp_list_millisecond, rsp_range=rsp_t_range)
-
-    percentile = get_percentile_value(rsp_counter=counter, rsp_time_list=rsp_list_millisecond)
-    percentile_rages_dict[str(rsp_time_ranges[idx])] = percentile
-write_rsp_time_percentile_ranges(percentile_rages_dict)
+#
+# rsp_list = extract_response_time_from_record(csv_path="/home/shayavr/Desktop/git/automation-locust/tests/stats.csv")
+#
+# # rsp_list_millisecond = convert_to_millisecond(response_time_list=rsp_list)
+# percentile_rages_dict = {}
+# rsp_time_ranges = [(0, 100), (101 , 500), (501, None)]
+# for idx, rsp_t_range in enumerate(rsp_time_ranges):
+#     counter = count_rsp_time_by_rsp_time_ranges(rsp_time_data=rsp_list, rsp_range=rsp_t_range)
+#
+#     percentile = get_percentile_value(rsp_counter=counter, rsp_time_list=rsp_list)
+#     percentile_rages_dict[str(rsp_time_ranges[idx])] = percentile
+# write_rsp_time_percentile_ranges(percentile_rages_dict)
 

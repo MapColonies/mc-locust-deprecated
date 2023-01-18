@@ -105,3 +105,6 @@ filelist = glob.glob(r"D:\Train\*.jpg")
 print(len(filelist))
 for file in filelist:
     print(file)
+
+
+
